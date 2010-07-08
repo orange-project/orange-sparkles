@@ -1,6 +1,6 @@
 - packet["page.title"] = "Blog > Edit"
-- packet.add_js("popout-effects-generic.js")
-- packet.add_js("popout-effects-page-edit.js")
+- packet.add_js("popout-effects-generic.js", :module => "_sparkles_")
+- packet.add_js("popout-effects-page-edit.js", :module => "_sparkles_")
 %div#edit-box
   %form#edit{:action => route_to(model_name, model.id, "save"), :method => "POST"}
     %label{:for => "edit-title"} Title
@@ -24,7 +24,7 @@
     Settings
     %div#popout-collapse
       %a#collapse{:href => "#"}
-        %img{:src => "/assets/public/images/collapse-left.png", :border => "0"}
+        %img{:src => "/assets/_sparkles_/images/collapse-left.png", :border => "0"}
   / %div.slider-container.main-slider-container
   /     %div.slider-background.slider-background-general-custom
   /       %div.slider
@@ -63,7 +63,7 @@
           Page Summary (optional)
           %div.settings-collapse
             %a.collapse-up{:href => "#"}
-              %img{:src => "/assets/public/images/collapse-up.png", :border => "0"}
+              %img{:src => "/assets/_sparkles_/images/collapse-up.png", :border => "0"}
           %br
           %div#page-summary-textarea.settings-area
             %textarea#edit-page-summary.autosize= model.summary
@@ -78,7 +78,7 @@
           Page Keywords (optional)
           %div.settings-collapse
             %a.collapse-up{:href => "#"}
-              %img{:src => "/assets/public/images/collapse-up.png", :border => "0"}
+              %img{:src => "/assets/_sparkles_/images/collapse-up.png", :border => "0"}
           %br
           %div#page-keywords-textarea.settings-area
             %textarea#edit-page-keywords.autosize

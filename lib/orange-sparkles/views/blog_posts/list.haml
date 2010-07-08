@@ -1,4 +1,4 @@
-- packet.add_js("page-list-effects.js")
+- packet.add_js("page-list-effects.js", :module => "_sparkles_")
 - packet["page.title"] = "Blog"
 - is_short ||= false
 #blog-list.list-view
@@ -29,11 +29,11 @@
           = view_table_row(model_name, :model => post)
   .pager
     %form
-      %img.first{:src=>"/assets/public/images/tablesorter/first.png"}
-      %img.prev{:src=>"/assets/public/images/tablesorter/prev.png"}
+      %img.first{:src=>"/assets/_sparkles_/images/tablesorter/first.png"}
+      %img.prev{:src=>"/assets/_sparkles_/images/tablesorter/prev.png"}
       %input.pagedisplay{:type => "text"}
-      %img.next{:src=>"/assets/public/images/tablesorter/next.png"}
-      %img.last{:src=>"/assets/public/images/tablesorter/last.png"}
+      %img.next{:src=>"/assets/_sparkles_/images/tablesorter/next.png"}
+      %img.last{:src=>"/assets/_sparkles_/images/tablesorter/last.png"}
       %select.pagesize
         %option{:value => "5", :selected => is_short ? true : false} 5
         %option{:value => "10", :selected => is_short ? false : true} 10
