@@ -1,0 +1,40 @@
+- packet.add_js("page-list-effects.js")
+- packet["page.title"] = "Blog"
+- is_short ||= false
+#blog-list.list-view
+  %table.tablesorter
+    %thead
+      %tr.list-header-group
+        %th.list-header.page-listing-expand-collapse
+          &nbsp;
+        %th.list-header
+          Blog Title
+        %th.list-header
+          Date
+        %th.list-header
+          Status
+        %td.list-header
+          Actions
+    %tfoot
+      %tr
+        %td &nbsp;
+        %td &nbsp;
+        %td &nbsp;
+        %td &nbsp;
+        %td
+          %a.button.add-button{:href => route_to(model_name, :create)} Add new Post
+    %tbody.pages
+      - for post in list
+        %tr.page-listing-item{:id => "blog-post-#{post.id}"}
+          = view_table_row(model_name, :model => post)
+  .pager
+    %form
+      %img.first{:src=>"/assets/public/images/tablesorter/first.png"}
+      %img.prev{:src=>"/assets/public/images/tablesorter/prev.png"}
+      %input.pagedisplay{:type => "text"}
+      %img.next{:src=>"/assets/public/images/tablesorter/next.png"}
+      %img.last{:src=>"/assets/public/images/tablesorter/last.png"}
+      %select.pagesize
+        %option{:value => "5", :selected => is_short ? true : false} 5
+        %option{:value => "10", :selected => is_short ? false : true} 10
+        %option{:value => "25"} 25

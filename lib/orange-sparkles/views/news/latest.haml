@@ -1,0 +1,11 @@
+%h1 Latest news
+- list.each do |news|
+  %article
+    %header
+      %h1 
+        %time{:datetime => news.created_at.strftime("%Y-%m-%d")}= news.created_at.strftime("%B %e, %Y")
+    .section
+      %h2 
+        %a{:href => resource.link_for(packet, news)} #{news.title}
+      .news_description
+        = markdown(news.description)

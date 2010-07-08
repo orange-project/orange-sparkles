@@ -1,0 +1,21 @@
+- part[:title] = part[:page_title] = "WNSF Blog"
+%article.blog_post
+  %footer
+    .date
+      Posted on:
+      %br 
+      %time{:datetime=>model.published_at, :pubdate => true}= model.published_at.strftime("%B %e, %Y")      
+  %header
+    %h1= model.title
+  - if(model.paid_member_only)
+    %o:if_paid_member{:else_view => "not_paid"}
+      .body= markdown(model.body)
+  - else
+    .body= markdown(model.body) 
+.blog_nav
+  %a{:href => blog_url} (Back to Posts)
+- if(model.paid_member_only)
+  %o:if_paid_member
+    .comments= orange[:disqus, true].comment_thread(packet)
+- else
+  .comments= orange[:disqus, true].comment_thread(packet)

@@ -1,0 +1,20 @@
+!!! 5
+%html{:lang => "en"}
+  %head
+    %title Orange Site
+    %meta{:charset => "utf-8"}
+    -# CSS
+    = part[:css]
+    = part[:js]
+    /[if lt IE 9]
+      %script{:src => "http://html5shiv.googlecode.com/svn/trunk/html5.js"}
+  %body#home
+    .container.container_24
+      %header.head
+        .logo
+          %h1 Orange Site
+        %nav.clearfix
+          = orange[:sitemap].two_level(packet)
+          %br.clear
+      .body.grid_22.prefix_1.suffix_1
+        = yield

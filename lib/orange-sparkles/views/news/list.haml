@@ -1,0 +1,37 @@
+- packet.add_js("page-list-effects.js")
+- packet["page.title"] = "News"
+- is_short ||= false
+#news-list.list-view
+  %table.tablesorter
+    %thead
+      %tr.list-header-group
+        %th.list-header.page-listing-expand-collapse
+          &nbsp;
+        %th.list-header
+          Title
+        %th.list-header
+          Date
+        %td.list-header
+          Actions
+    %tfoot
+      %tr
+        %td &nbsp;
+        %td &nbsp;
+        %td &nbsp;
+        %td
+          %a.button.add-button{:href => route_to(model_name, :create)} Add new Story
+    %tbody.pages
+      - for post in list
+        %tr.page-listing-item{:id => "news-#{post.id}"}
+          = view_table_row(model_name, :model => post)
+  .pager
+    %form
+      %img.first{:src=>"/assets/public/images/tablesorter/first.png"}
+      %img.prev{:src=>"/assets/public/images/tablesorter/prev.png"}
+      %input.pagedisplay{:type => "text"}
+      %img.next{:src=>"/assets/public/images/tablesorter/next.png"}
+      %img.last{:src=>"/assets/public/images/tablesorter/last.png"}
+      %select.pagesize
+        %option{:value => "5", :selected => is_short ? true : false} 5
+        %option{:value => "10", :selected => is_short ? false : true} 10
+        %option{:value => "25"} 25

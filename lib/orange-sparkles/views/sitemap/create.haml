@@ -1,0 +1,10 @@
+.form-view
+  %form{:action => "#{packet.route_to(model_name, 'new')}", :method => 'post'}
+    - packet["page.title"] = "Sitemap > Create Link/Folder"
+    %p
+      You can use this to create a new link or folder in the navigation
+      without creating a new page.
+      %br
+    - for prop in props
+      %p= view_attribute(prop, model_name, :label => true)
+    %input{:type => 'submit', :value => 'Save New Item'}

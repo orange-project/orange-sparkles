@@ -1,0 +1,2 @@
+- m = orange[:pages].new(packet, {:no_reroute => true, :title => "New Page", :body => "Some content", :orange_site => (packet['subsite', false] ? packet['subsite'] : packet['site'])})
+- reroute(:pages, :orange, m.id, :edit)

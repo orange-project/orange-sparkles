@@ -1,0 +1,86 @@
+- packet["page.title"] = "Blog > Edit"
+- packet.add_js("popout-effects-generic.js")
+- packet.add_js("popout-effects-page-edit.js")
+%div#edit-box
+  %form#edit{:action => route_to(model_name, model.id, "save"), :method => "POST"}
+    %label{:for => "edit-title"} Title
+    - # Make it harder to republish to social by forcing publish to social off.
+    %input#edit-title{:type => "text", :name => "#{model_name}[title]", :value => model.title}
+    %textarea#edit-content{:cols => "32", :rows => "40", :name => "#{model_name}[body]"}<= model.body
+    %div#save-status
+      #{model.published ? "Published" : "Draft saved"} #{fuzzy_time(model.updated_at)}
+    %input#publish-me{:type => "hidden", :name => "#{model_name}[published]", :value => "0"}  
+    %input#publish-at{:type => "hidden", :name => "#{model_name}[published_at]", :value => (model.published_at.blank? ? "" : model.published_at)}
+    %input#real-summary{:type => "hidden", :name => "#{model_name}[summary]", :value => model.summary}
+    %div#button-container
+      - if model.published
+        %input#save-draft{:type => "button", :onclick => "$('#publish-me').val('0'); $('#save-status').text('Saving draft...'); $('#real-summary').val($('#edit-page-summary').val()); $('#edit').ajaxSubmit({success: function(){$('#save-status').text('Draft unpublished.');}, method: 'post'}); return false;", :value => "Unpublish"}
+        %input#publish{:type => "button", :onclick => "$('#real-summary').val($('#edit-page-summary').val()); $('#publish-me').val('1'); $('#edit').submit(); return false;", :value => "Republish"}
+      - else 
+        %input#save-draft{:type => "button", :onclick => "$('#save-status').text('Saving draft...'); $('#real-summary').val($('#edit-page-summary').val()); $('#edit').ajaxSubmit({success: function(){$('#save-status').text('Draft saved.');}, method: 'post'}); return false;", :value => "Save Draft"}
+        %input#publish{:type => "button", :onclick => "$('#real-summary').val($('#edit-page-summary').val()); $('#publish-me').val('1'); $('#edit').submit(); return false;", :value => "Publish"}
+%div#popout-box
+  %div#popout-titlebar
+    Settings
+    %div#popout-collapse
+      %a#collapse{:href => "#"}
+        %img{:src => "/assets/public/images/collapse-left.png", :border => "0"}
+  / %div.slider-container.main-slider-container
+  /     %div.slider-background.slider-background-general-custom
+  /       %div.slider
+  /         General
+  %div.page-settings-container
+    %div.page-settings-container-current
+      %div#page-settings-container-1
+        / %hr.one-px-grey
+        / %div#show-in-menu.control-label
+        /           - unless routes.empty?
+        /             Show in Menu
+        /             %div.slider-container
+        /               %div.slider-background.slider-background-yes-no
+        /                 - if routes.first.show_in_nav
+        /                   %div.slider
+        /                     Yes
+        /                 - else
+        /                   %div.slider-off
+        /                     No
+        /           - else
+        /             %a.grey-button Add to Menu
+        /           %hr.one-px-grey
+        
+        %div#publish_to_social.control-label
+          Publish To Social Media?
+          %div.slider-container
+            %div.slider-background.slider-background-yes-no
+              - if model.publish_to_social && !model.published
+                %div.slider
+                  Yes
+              - else
+                %div.slider-off
+                  No
+          %hr.one-px-grey
+        %div#page-summary.control-label
+          Page Summary (optional)
+          %div.settings-collapse
+            %a.collapse-up{:href => "#"}
+              %img{:src => "/assets/public/images/collapse-up.png", :border => "0"}
+          %br
+          %div#page-summary-textarea.settings-area
+            %textarea#edit-page-summary.autosize= model.summary
+          %hr.one-px-grey
+        .control-label
+          .preview-container
+            %a.button.grey-button{:onclick => " $('#edit').ajaxSubmit({async: false, beforeSubmit: function(){$('#save-status').text('Saving draft before preview...'); $('#real-summary').val($('#edit-page-summary').val());}, success: function(){$('#save-status').text('Draft saved.')}});", :href => route_to(:blog_posts, model.id, :show, :context => "preview"), :target => "_blank", :rel => "colorbox"} Show Preview
+      %div#page-settings-container-2
+        
+        %hr.one-px-grey
+        %div#page-keywords.control-label
+          Page Keywords (optional)
+          %div.settings-collapse
+            %a.collapse-up{:href => "#"}
+              %img{:src => "/assets/public/images/collapse-up.png", :border => "0"}
+          %br
+          %div#page-keywords-textarea.settings-area
+            %textarea#edit-page-keywords.autosize
+        %hr.one-px-grey
+%br.clearfix

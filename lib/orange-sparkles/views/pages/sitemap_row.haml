@@ -1,0 +1,55 @@
+%td.move
+  .move-container
+    %div.page-listing-cell.move-controls
+      .move_actions.dent_actions
+        = move_button('outdent', route)
+        = move_button('higher', route)
+        = move_button('lower', route)
+        = move_button('indent', route)
+    - if (route.level > 0 && route.children.count > 0)
+      %div.page-listing-expand
+        %a.expand{:href => "#"}
+          %img{:src => "/assets/public/images/page-listing-expand.png", :border => "0"}
+    - else
+      %div.page-listing-expand
+        &nbsp;
+%td
+  %div.page-listing-title{:class => (route.level > 0 ? "page-listing-page" : "page-listing-home")}
+    %a{:href => route_to(model_name, model.id, "edit")}
+      - if(route.show_in_nav || route.level == 0)
+        %strong= model.title
+      - else
+        %em= model.title
+    &nbsp;
+    %a.page-listing-more-info{:href => "#"}
+      Extras...
+    %div.page-listing-extras
+      .menu-link
+        Menu Link Text:&nbsp;
+        %span.last-uri-segment><
+          %a{:href => route_to(:sitemap, route.id, :edit)}= orange[:sitemap].link_text_for(route)
+      %div.page-listing-location
+        Current Location:&nbsp; 
+        %span.last-uri-segment><
+          = route.full_path
+      .menu-toggle
+        Show in Menu:&nbsp;
+        = button("Yes", route_to(:sitemap, route.id, :show_in_nav), :css_class => route.show_in_nav ? "white-button" : "grey-button")
+        = button("No", route_to(:sitemap, route.id, :unshow_in_nav), :css_class => !route.show_in_nav ? "white-button" : "grey-button")
+    %div.page-listing-excerpt
+      %pre&= model.body.blank? ? "" : model.body[0..100]
+%td
+  %div.page-status
+    %div.page-listing-status
+      - if(model.published)
+        %a.button.status-published Published
+      - else
+        = button("Draft", route_to(model_name, model.id, 'publish'), :css_class => "status-draft")
+%td
+  %div.page-listing-actions
+    %a.button.grey-button.preview-button{:href => route.full_path, :target => "_blank", :rel => "colorbox"}
+      Preview
+    - unless route.level == 0
+      = delete_button(route_to(:sitemap, route.id, "delete"))
+      %a.button.grey-button.move-button{:href => "#"}
+        Move

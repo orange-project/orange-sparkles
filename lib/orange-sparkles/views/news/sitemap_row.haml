@@ -1,0 +1,46 @@
+%td.move
+  .move-container
+    %div.page-listing-cell.move-controls= orange[:sitemap].route_actions(packet, :model => route)
+    - if (route.level > 0 && route.children.count > 0)
+      %div.page-listing-expand
+        %a.expand{:href => "#"}
+          %img{:src => "/assets/public/images/page-listing-expand.png", :border => "0"}
+    - else
+      %div.page-listing-expand
+        &nbsp;
+%td
+  %div.page-listing-title.page-listing-blog
+    %a{:href => route_to(model_name)}
+      - if(route.show_in_nav)
+        %strong= route.link_text
+      - else
+        %em= route.link_text
+    &nbsp;
+    %a.page-listing-more-info{:href => "#"}
+      Extras...
+    %div.page-listing-extras
+      .menu-link
+        Menu Link Text:&nbsp;
+        %span.last-uri-segment><
+          %a{:href => route_to(:sitemap, route.id, :edit)}= route.link_text
+      %div.page-listing-location
+        Current Location:&nbsp; 
+        %span.last-uri-segment><
+          = route.full_path
+      .menu-toggle
+        Show in Menu:&nbsp;
+        = button("Yes", route_to(:sitemap, route.id, :show_in_nav), :css_class => route.show_in_nav ? "white-button" : "grey-button")
+        = button("No", route_to(:sitemap, route.id, :unshow_in_nav), :css_class => !route.show_in_nav ? "white-button" : "grey-button")
+    %div.page-listing-excerpt
+      = "Nothing here."
+%td
+  %div.page-status
+    %div.page-listing-status
+      %a.button.status-published Published
+%td
+  %div.page-listing-actions
+    %a.button.grey-button.preview-button{:href => route.full_path, :target => "_blank", :rel => "colorbox"}
+      Preview
+    = delete_button(route_to(model_name, model.id, "delete"))
+    %a.button.grey-button.move-button{:href => "#"}
+      Move

@@ -1,0 +1,37 @@
+%h2 Code Slices
+%hr
+.slice-list
+  %p
+    %label Event Calendars: 
+    %select.calendar
+      %option{} Choose a calendar to insert
+      - for cal in OrangeCalendar.all
+        %option{:value => cal.name}= cal.name
+  %br
+  %p
+    %label Contact Forms: 
+    %select.contact
+      %option{} Choose a form to insert
+      - for form in OrangeContactForms.all
+        %option{:value => form.title}= form.title
+  %br
+  %p
+    %label Links:
+    %select.link
+      %option{} Choose a page to link
+      - for link in orange[:sitemap].home(self).self_and_descendants
+        %option{:value => link.id}= ("&nbsp;&nbsp;"*link.level) + orange[:sitemap].link_text_for(link)[0..60] + '...'
+    %br
+:javascript
+  $('.slice-list .calendar').change(function(){
+    $.markItUp({ replaceWith: '<o:calendar name="'+$(this).val()+'" />' } );
+    $.fn.colorbox.close();
+  });
+  $('.slice-list .contact').change(function(){
+    $.markItUp({ replaceWith: '<o:contactform name="'+$(this).val()+'" />' } );
+    $.fn.colorbox.close();
+  });
+  $('.slice-list .link').change(function(){
+    $.markItUp({ replaceWith: '<o:link id="'+$(this).val()+'"></o:link>' } );
+    $.fn.colorbox.close();
+  });

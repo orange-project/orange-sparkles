@@ -1,0 +1,14 @@
+%br
+.disqus_comments
+  - if packet['orange.globals'][:development_mode]
+    %script{:type => 'text/javascript'} var disqus_developer = 1;
+  #disqus_thread
+  :javascript
+    (function() {
+     var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+     dsq.src = 'http://wnsf.disqus.com/embed.js';
+     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  %noscript
+    Please enable JavaScript to view the 
+    %a{:href => 'http://disqus.com/?ref_noscript=wnsf'} comments powered by Disqus.

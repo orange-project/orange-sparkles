@@ -1,0 +1,25 @@
+- packet.add_js("page-list-effects.js")
+- packet["page.title"] = "Pages"
+#pages-list.list-view
+  %table
+    %thead
+      %tr.list-header-group
+        %td.list-header.page-listing-expand-collapse
+          &nbsp;
+        %td.list-header
+          Page Title
+        %td.list-header
+          Status
+        %td.list-header
+          Actions
+    %tfoot
+      %tr
+        %td &nbsp;
+        %td &nbsp;
+        %td &nbsp;
+        %td
+          %a.button.add-button{:href => route_to(:pages, :create)} Add new Page
+    %tbody.pages.no-bullet
+      - for page in list
+        %tr.page-listing-item{:id => "page-#{page.id}"}
+          = view_table_row(model_name, :model => page)

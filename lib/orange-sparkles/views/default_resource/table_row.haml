@@ -1,0 +1,10 @@
+- if model
+  %td.move
+    &nbsp;
+  - for prop in props
+    %td= model.attribute_get(prop[:name])
+  %td.actions
+    %div.page-listing-actions
+      %a.button.grey-button.preview-button{:href => route_to(model_name, model.id, "edit")}
+        Edit
+      = delete_button(route_to(model_name, model.id, "delete"))

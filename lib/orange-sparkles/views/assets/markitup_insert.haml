@@ -1,0 +1,25 @@
+.new-asset
+  %h2 Upload a new image
+  %hr
+  .asset-upload-form
+    = view_create_markitup(:assets)
+.choose-asset{:style => "display: none"}
+  %h2 Choose a previously uploaded image
+  %hr
+  = view_list_markitup(:assets)
+.current-asset
+  %hr
+  %a.asset-chooser-toggle{:href => "#"} Choose a previously uploaded image instead
+  %hr
+  %p 
+    %em No image currently chosen
+:javascript
+  $(".asset-chooser-toggle").toggle(function(){
+    $(this).text("Upload a new image instead");
+    $(".new-asset").hide();
+    $(".choose-asset").show();
+  }, function(){
+    $(this).text("Choose a previously uploaded image instead");
+    $(".new-asset").show();
+    $(".choose-asset").hide();
+  });

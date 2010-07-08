@@ -1,0 +1,17 @@
+%td.move
+  &nbsp;
+%td
+  %div.page-listing-title.page-listing-blog
+    %a{:href => route_to(model_name, model.id, "edit")}
+      %strong
+        = model.title
+    &nbsp;
+    %div.page-listing-excerpt
+      = model.description
+%td
+  = model.updated_at.strftime("%m/%d/%Y")
+%td
+  %div.page-listing-actions
+    %a.button.grey-button.preview-button{:href => resource.link_for(packet, model), :target => "_blank", :rel => "colorbox"}
+      Link
+    = delete_button(route_to(model_name, model.id, "delete"))

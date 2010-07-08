@@ -1,0 +1,27 @@
+%td.move
+  .move-container
+    %div.page-listing-expand
+      &nbsp;
+%td
+  %div.page-listing-title.page-listing-blog
+    %a{:href => route_to(model_name, model.id, "edit")}
+      %strong= model.title
+    %div.page-listing-excerpt
+      %pre= model.body.blank? ? "" : model.body[0..100]
+%td
+  - if(model.published)
+    = model.published_at.strftime("%m/%d/%Y")
+  - else
+    = model.updated_at.strftime("%m/%d/%Y")
+%td
+  %div.page-status
+    %div.page-listing-status
+      - if(model.published)
+        %a.button.status-published Published
+      - else
+        = button("Draft", route_to(model_name, model.id, 'publish'), :css_class => "status-draft")
+%td
+  %div.page-listing-actions
+    %a.button.grey-button.preview-button{:href => route_to(model_name, model.id, :context => "preview"), :target => "_blank"}
+      Preview
+    = delete_button(route_to(model_name, model.id, "delete"))

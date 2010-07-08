@@ -1,0 +1,9 @@
+%article.blog_post.grid_15.alpha.omega
+  .model.grid_11.alpha
+    %header
+      %h1
+        %a{:href => "#{blog_url}/#{model.created_at.year}/#{model.created_at.month}/#{model.slug}"}= model.title
+    .blog_post_body= markdown(model.summary.blank? ? model.body : model.summary)
+  %footer.grid_2.suffix_1.prefix_1.omega
+    .date
+      %time{:datetime=>model.published_at, :pubdate => true}= model.published_at.strftime("%B %e, %Y")

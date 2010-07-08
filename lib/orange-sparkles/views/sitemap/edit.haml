@@ -1,0 +1,15 @@
+.form-view
+  - if model
+    %form{:action => packet.route_to(model_name, model[:id], 'save'), :method => 'post'}
+      - for prop in props
+        %p!= view_attribute(prop, model_name, :label => true, :value => model.attribute_get(prop[:name]), :model => model)
+      %input{:type => 'submit', :value => 'Save Changes'}
+    %form#move_me{:action => route_to(model_name, model[:id], 'into'), :method => 'post'}
+      %p
+        %label Move into:
+        %select{:onchange => "$('#move_me').attr('action', $('#move_me').attr('action')+'/'+$(this).val()); $('#move_me').submit();"}
+          %option{:disabled => true} Choose a page to move into
+          - for link in orange[:sitemap].home(self).self_and_descendants
+            %option{:value => link.id, :disabled => (model.lft <= link.lft && model.rgt >= link.rgt)}= ("&nbsp;&nbsp;"*link.level) + orange[:sitemap].link_text_for(link)
+  - else
+    %p Couldn't find the item you're looking for.

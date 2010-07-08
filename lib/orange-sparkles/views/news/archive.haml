@@ -1,0 +1,21 @@
+%section.news_items
+  - for news in list
+    %article.news_item.grid_15.alpha.omega
+      .grid_11.alpha
+        %header
+          %h1.news_title
+            %a{:href => resource.link_for(packet, news)} #{news.title}
+        .news_description= markdown(news.description)
+      %footer.grid_2.suffix_1.prefix_1.omega
+        .date
+          %time{:datetime=>news.updated_at, :pubdate => true}= news.updated_at.strftime("%B %e, %Y")
+  %nav.news_nav.grid_15.alpha.omega
+    - if page > 1
+      %a.newer.grid_5.alpha{:href => "#{archive_url}/page/#{page-1}"} &laquo; Newer Posts 
+    - else
+      %a.newer.grid_5.alpha &nbsp;
+    %p.count.grid_5 Page #{page} of #{pages}
+    - if page < pages
+      %a.older.grid_5.omega{:href => "#{archive_url}/page/#{page+1}"} Older Posts &raquo;
+    - else
+      %a.older.grid_5.omega &nbsp;

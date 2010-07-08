@@ -1,0 +1,17 @@
+.newsletter.grid_22.prefix_1.suffix_1
+  .grid_16.alpha
+    %form{:action => route_to(:members, :register)}
+      %p
+        %label Sign up for our newsletter:
+        %input{:name => 'email'}
+        %input{:type => "submit", :value => "Sign Up"}
+  .grid_5.prefix_1.omega
+    %p.members
+      Log in: 
+      %a{:href => route_to(:members, :login)} Participant
+      = '|'
+      %a{:href => route_to(:sitemap, :context => "admin")} Admin
+%footer.foot
+  %p.copyright 
+    All Content &copy; #{Time.now.strftime('%Y')}    |
+    WNSF - Women's Network for a Sustainable Future |
