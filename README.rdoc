@@ -1,6 +1,10 @@
 = orange-sparkles
 
-Description goes here.
+Making it easy to get an orange site up and running. See examples for a bare minimum 
+version.
+
+A thor script exists to make building a bit easier (hopefully) if you want to get more
+complicated with the views and custom css/templates (which you probably do).
 
 == Note on Patches/Pull Requests
  
