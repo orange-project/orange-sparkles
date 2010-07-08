@@ -12,6 +12,8 @@ require 'maruku'
 require 'rack/builder'
 require 'rack/abstract_format'
 
+require 'orange-sparkles/plugin'
+
 class Orange::SparklesApp < Orange::Application
   def stack_init
     @core.template_chooser do |packet|
@@ -45,12 +47,12 @@ class Orange::SparklesApp < Orange::Application
   end
   
   stack do
-    
+    orange.options[:development_mode] = true
     use Rack::CommonLogger
     use Rack::MethodOverride
     use Rack::Session::Cookie, :secret => (orange.options['main_user'] || 'the_secret')
-    auto_reload! if orange.options['development_mode']
-    use_exceptions if orange.options['development_mode']
+    auto_reload!
+    use_exceptions
     
     use Rack::OpenID, OpenIDDataMapper::DataMapperStore.new
     prerouting
@@ -123,8 +125,8 @@ module SparkleHelpers
       disabled = true unless route.next_sibling
     end
     unless disabled
-      return "<form method='POST' class='move-arrow' action='#{action}'><a href='#{action}' class='move-#{dir}' onclick=''><img src='/assets/public/images/move-#{dir}.png' /></a></form>"
-    else return "<a class='move-#{dir} move-disabled'><img src='/assets/public/images/move-#{dir}-disabled.png' /></a>"
+      return "<form method='POST' class='move-arrow' action='#{action}'><a href='#{action}' class='move-#{dir}' onclick=''><img src='/assets/_sparkles_/images/move-#{dir}.png' /></a></form>"
+    else return "<a class='move-#{dir} move-disabled'><img src='/assets/_sparkles_/images/move-#{dir}-disabled.png' /></a>"
     end
   end
 end

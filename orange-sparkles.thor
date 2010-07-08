@@ -49,9 +49,10 @@ DOC
   end
   
   def assets_dir
-    empty_directory "#{name}/assets/public/css"
-    empty_directory "#{name}/assets/public/js"
-    empty_directory "#{name}/assets/public/images"
+    empty_directory "#{name}/assets/_sparkles_/css"
+    empty_directory "#{name}/assets/_sparkles_/js"
+    empty_directory "#{name}/assets/_sparkles_/images"
+    empty_directory "#{name}/assets/uploaded"
   end
   
   def public_dir
@@ -96,5 +97,9 @@ In config.yml, set the appropriate database connection string:
 
 
 DOC
+  end
+  
+  def create_templates_dir
+    empty_directory "#{name}/templates"
   end
 end

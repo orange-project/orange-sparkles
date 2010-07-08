@@ -10,6 +10,7 @@ begin
     gem.email = "therabidbanana@gmail.com"
     gem.homepage = "http://github.com/orange-project/orange-sparkles"
     gem.authors = ["David Haslem"]
+    gem.files = FileList['lib/**/*']
     gem.add_dependency "orange-core", ">= 0.5.7"
     gem.add_dependency "orange-more", ">= 0.5.7"
     gem.add_dependency "maruku", ">= 0"

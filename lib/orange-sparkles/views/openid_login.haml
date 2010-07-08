@@ -2,13 +2,13 @@
 %html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en"}
 %head
   %title Sparkles : Login
-  %link{:rel => "stylesheet", :href => "/assets/public/css/sparkles-admin.css", :media => "Screen"}
-  %script{:src => "/assets/public/js/jquery-1.4.1.min.js", :type => "text/javascript"}
+  %link{:rel => "stylesheet", :href => "/assets/_sparkles_/css/sparkles-admin.css", :media => "Screen"}
+  %script{:src => "/assets/_sparkles_/js/jquery-1.4.1.min.js", :type => "text/javascript"}
 %body
   %div#header
   %div#subheader
     %h1
-      %img.subhead-icon{:src => "/assets/public/images/lock.png", :width => "23", :height => "22", :alt => "Login icon"} Login
+      %img.subhead-icon{:src => "/assets/_sparkles_/images/lock.png", :width => "23", :height => "22", :alt => "Login icon"} Login
   %div#page-content
     %h1 Welcome to Sparkles*.
     %h2 You'll need to log in before you can continue.
@@ -17,7 +17,7 @@
         %label.center-block
           Login with Google
         %a.center-block{:href => "#", :onclick => "$(\"#login-openid\").val(\"https://www.google.com/accounts/o8/id\"); $(\"form#login\").submit(); return false;"}
-          %img{:src => "/assets/public/images/google-small.png", :border => "0"}
+          %img{:src => "/assets/_sparkles_/images/google-small.png", :border => "0"}
         %span.center-block 
           or
         %label.center-block{:for => "openid_identifier"} Use OpenID

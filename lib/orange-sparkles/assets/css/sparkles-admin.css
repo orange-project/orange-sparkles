@@ -1,6 +1,6 @@
 /* @override 
-	http://localhost:4321/assets/public/css/sparkles-admin.css
-	http://localhost:5432/assets/public/css/sparkles-admin.css
+	http://localhost:4321/assets/_sparkles_/css/sparkles-admin.css
+	http://localhost:5432/assets/_sparkles_/css/sparkles-admin.css
 */
 
 /* General Styles */
@@ -204,7 +204,7 @@ div#current-site-header {
 	padding: 5px; width: 163px;
 }
 #login #login-submit {
-	background: transparent url(/assets/public/images/orange-button.png) no-repeat 0 0; 
+	background: transparent url(/assets/_sparkles_/images/orange-button.png) no-repeat 0 0; 
 	color: #FFFFFF;
 	border: none;
 	font-size: 18px;
@@ -215,7 +215,7 @@ div#current-site-header {
 	width: 110px;
 }
 	#login #login-submit:hover{
-		background: url(/assets/public/images/orange-button.png) no-repeat 0 -39px; 
+		background: url(/assets/_sparkles_/images/orange-button.png) no-repeat 0 -39px; 
 		padding: 10px 0 6px 0;
 	}
 
@@ -281,7 +281,7 @@ div#box-container {
 			width: 400px;
 		}
 			#edit #save-draft {
-				background: url(/assets/public/images/grey-button.png) no-repeat 0 0;
+				background: url(/assets/_sparkles_/images/grey-button.png) no-repeat 0 0;
 				color: #575555;
 				font-size: 18px;
 				height: 39px;
@@ -291,10 +291,10 @@ div#box-container {
 				border: none;
 			}
 				#edit #save-draft:hover {
-					background: url(/assets/public/images/grey-button.png) no-repeat 0 -39px;
+					background: url(/assets/_sparkles_/images/grey-button.png) no-repeat 0 -39px;
 				}
 			#edit #publish {
-				background: url(/assets/public/images/green-button.png) no-repeat 0 0; 
+				background: url(/assets/_sparkles_/images/green-button.png) no-repeat 0 0; 
 				color: #FFFFFF;
 				font-size: 18px;
 				height: 39px;
@@ -304,7 +304,7 @@ div#box-container {
 				border: none;
 			}
 				#edit #publish:hover {
-					background: url(/assets/public/images/green-button.png) no-repeat 0 -39px;
+					background: url(/assets/_sparkles_/images/green-button.png) no-repeat 0 -39px;
 					padding: 2px 0 -1px;
 				}
 		#save-status {
@@ -313,7 +313,7 @@ div#box-container {
 			text-align: center;
 		}
 	div#popout-box { 
-		background: #f1f1f1 url(/assets/public/images/popout-shadow.png) repeat-y top left;
+		background: #f1f1f1 url(/assets/_sparkles_/images/popout-shadow.png) repeat-y top left;
 		border: 1px solid #d7d7d7;
 		border-radius-top-right: 4px;
 		border-radius-bottom-right: 4px;
@@ -378,19 +378,19 @@ div#box-container {
 				cursor: pointer;
 			}
 			div.slider-background-general-custom {
-				background: #d7d7d7 url(/assets/public/images/slider-bg-gen-cust.png);
+				background: #d7d7d7 url(/assets/_sparkles_/images/slider-bg-gen-cust.png);
 			}
 			div.slider-background-now-later {
-				background: #d7d7d7 url(/assets/public/images/slider-bg-now-later.png);
+				background: #d7d7d7 url(/assets/_sparkles_/images/slider-bg-now-later.png);
 			}
 			div.slider-background-yes-no {
-				background: #d7d7d7 url(/assets/public/images/slider-bg-yes-no.png);
+				background: #d7d7d7 url(/assets/_sparkles_/images/slider-bg-yes-no.png);
 			}
 			div.slider-background-public-private {
-				background: #d7d7d7 url(/assets/public/images/slider-bg-pub-priv.png);
+				background: #d7d7d7 url(/assets/_sparkles_/images/slider-bg-pub-priv.png);
 			}
 			div.slider-background-enabled-disabled {
-				background: #d7d7d7 url(/assets/public/images/slider-bg-enabled-disabled.png);
+				background: #d7d7d7 url(/assets/_sparkles_/images/slider-bg-enabled-disabled.png);
 			}
 		div.page-settings-container-current {
 			width: 1000px;
@@ -487,22 +487,22 @@ div#box-container {
 			padding: 8px 0;
 		}
 		.page-listing-page {
-			background: url(/assets/public/images/page-listing-page.png) no-repeat 8px 0px;
+			background: url(/assets/_sparkles_/images/page-listing-page.png) no-repeat 8px 0px;
 		}
 		.page-listing-blog {
-			background: url(/assets/public/images/page-listing-blog.png) no-repeat 8px 0px;
+			background: url(/assets/_sparkles_/images/page-listing-blog.png) no-repeat 8px 0px;
 		}
 		.page-listing-subsite {
-			background: url(/assets/public/images/page-listing-subsite.png) no-repeat 8px 0px;
+			background: url(/assets/_sparkles_/images/page-listing-subsite.png) no-repeat 8px 0px;
 		}
 		.page-listing-link {
-			background: url(/assets/public/images/page-listing-link.png) no-repeat 8px 0px;
+			background: url(/assets/_sparkles_/images/page-listing-link.png) no-repeat 8px 0px;
 		}
 		.page-listing-home {
-			background: url(/assets/public/images/page-listing-home.png) no-repeat 8px 0px;
+			background: url(/assets/_sparkles_/images/page-listing-home.png) no-repeat 8px 0px;
 		}
 		.page-listing-event {
-			background: url(/assets/public/images/page-listing-event.png) no-repeat 8px 0px;
+			background: url(/assets/_sparkles_/images/page-listing-event.png) no-repeat 8px 0px;
 		}
 		.page-listing-cell {
 		}
@@ -694,14 +694,14 @@ table.tablesorter .header {
 	padding-right: 15px;
 	padding-top: 5px;
 	height: auto;
-	background: url(/assets/public/images/tablesorter/bg.gif) no-repeat right center;
+	background: url(/assets/_sparkles_/images/tablesorter/bg.gif) no-repeat right center;
 }
 table.tablesorter .headerSortUp {
-	background-image: url(/assets/public/images/tablesorter/asc.gif);
+	background-image: url(/assets/_sparkles_/images/tablesorter/asc.gif);
 	background-repeat: no-repeat;
 }
 table.tablesorter .headerSortDown {
-	background-image: url(/assets/public/images/tablesorter/desc.gif);
+	background-image: url(/assets/_sparkles_/images/tablesorter/desc.gif);
 	background-repeat: no-repeat;
 }
 
