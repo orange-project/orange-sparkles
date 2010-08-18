@@ -4,7 +4,6 @@
   - if model
     %form{:action => route_to(model_name, model[:id], 'save'), :method => 'post'}
       - for prop in props
-        - next unless [:show_ads, :linked_in_group, :vimeo_page, :spreedly_on].include? prop[:name]
         %p~ view_attribute(prop, model_name, :label => true, :value => model.attribute_get(prop[:name]))
       %input{:type => 'submit', :value => 'Save Changes'}
     %br.clearfix

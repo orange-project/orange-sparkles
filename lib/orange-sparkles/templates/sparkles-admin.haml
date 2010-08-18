@@ -17,14 +17,15 @@
           |
           %a{:href => route_to(:orange_sites, packet["site"].id, "edit")} Site Settings
       %div#current-site-header 
-        %span Current Site:
+        %span Currently editing:
         %br
-        %select{:id => "site-selector"}
-          - for site in packet["user"].orange_sites
-            %option{:value => (!site.is_a?(OrangeSubsite) ? "/admin/sitemap" : "/admin#{orange[:subsites].url_for(packet, site)}sitemap"), :selected => (packet['subsite', false] ? site == packet['subsite'] : site == packet['site'])}= site.name
+        %a.orange-text{:href => "/"}= packet['site'].name
       %div.tab-container
         / %a.tab#home-tab{:href => "#"} Home
         %a.tab#sitemap-tab{:href => route_to(:sitemap)} Pages
+        - for link in (orange[:admin].links(packet)["tabs"] || [])
+          %style= "body##{link[:resource]} a##{link[:resource]}-tab{ background: #999999;}"
+          %a.tab{:id => "#{link[:resource]}-tab", :href => route_to(link[:resource])}= link[:text]
     %div#subheader
       %h1
         %img.subhead-icon{:src => "/assets/_sparkles_/images/edit.png", :width => "23", :height => "22", :alt => "Pages icon"}

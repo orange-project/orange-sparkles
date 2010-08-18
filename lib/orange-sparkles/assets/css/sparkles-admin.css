@@ -105,6 +105,7 @@ body#members a#members-tab
 #page-content {
 	margin: 0 auto;
 	padding: 0 43px 48px;
+	z-index: 1;
 }
 br.clearfix { 
 	clear:both;
@@ -176,6 +177,7 @@ div#current-site-header {
 	text-align: center;
 	width: 100%;
 	position: fixed;
+	z-index: 100;
 }
 
 /* Login Styles */

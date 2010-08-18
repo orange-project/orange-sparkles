@@ -6,7 +6,7 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "orange-sparkles"
     gem.summary = "Adding some prettiness to orange-core"
-    gem.description = "This gem is a "
+    gem.description = "This gem is a CMS theme for orange"
     gem.email = "therabidbanana@gmail.com"
     gem.homepage = "http://github.com/orange-project/orange-sparkles"
     gem.authors = ["David Haslem"]

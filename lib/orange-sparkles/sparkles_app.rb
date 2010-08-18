@@ -36,11 +36,11 @@ class Orange::SparklesApp < Orange::Application
         orange.fire(:view_admin, packet)
         'sparkles-admin.haml'
       elsif(packet['route.path'] == '/')
-        packet.add_js('jquery-1.4.1.min.js', :module => '_sparkles_')
+        # packet.add_js('jquery-1.4.1.min.js', :module => '_sparkles_')
         ['reset', '960_24_col', 'text', 'main'].each{|c| packet.add_css("#{c}.css", :module => '_sparkles_')}
         'home.haml'
       else
-        packet.add_js('jquery-1.4.1.min.js', :module => '_sparkles_')
+        # packet.add_js('jquery-1.4.1.min.js', :module => '_sparkles_')
         ['reset', '960_24_col', 'text', 'main'].each{|c| packet.add_css("#{c}.css", :module => '_sparkles_')}
         'subpage.haml'
       end

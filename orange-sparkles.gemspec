@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["David Haslem"]
-  s.date = %q{2010-07-08}
-  s.description = %q{This gem is a }
+  s.date = %q{2010-08-17}
+  s.description = %q{This gem is a CMS theme for orange}
   s.email = %q{therabidbanana@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -248,8 +248,6 @@ Gem::Specification.new do |s|
      "lib/orange-sparkles/views/sitemap/one_level.haml",
      "lib/orange-sparkles/views/sitemap/route_actions.haml",
      "lib/orange-sparkles/views/sitemap/table_row.haml",
-     "lib/orange-sparkles/views/slices/footer.haml",
-     "lib/orange-sparkles/views/slices/header.haml",
      "lib/orange-sparkles/views/slices/lorem.haml",
      "lib/orange-sparkles/views/slices/slice_helper.haml",
      "lib/orange-sparkles/views/users/create.haml",

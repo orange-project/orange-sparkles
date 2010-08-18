@@ -2,20 +2,6 @@
 %hr
 .slice-list
   %p
-    %label Event Calendars: 
-    %select.calendar
-      %option{} Choose a calendar to insert
-      - for cal in OrangeCalendar.all
-        %option{:value => cal.name}= cal.name
-  %br
-  %p
-    %label Contact Forms: 
-    %select.contact
-      %option{} Choose a form to insert
-      - for form in OrangeContactForms.all
-        %option{:value => form.title}= form.title
-  %br
-  %p
     %label Links:
     %select.link
       %option{} Choose a page to link
