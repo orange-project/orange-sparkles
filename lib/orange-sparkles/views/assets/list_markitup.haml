@@ -9,7 +9,8 @@
         -else
           %img{:src => '/assets/_sparkles_/images/file_icon.png'}
       %p
-        %em= asset.name
+        - name = asset.name.size > 50 ? asset.name[0,50] + '...' : asset.name
+        %em= name
 :javascript
   $(".asset-tile .asset_tag a").click(function(ret){ 
     var tile = $(this).closest('.asset-tile');

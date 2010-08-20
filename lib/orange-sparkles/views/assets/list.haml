@@ -12,11 +12,12 @@
           -else
             %img{:src => '/assets/_sparkles_/images/file_icon.png'}
         %p
+          - name = asset.name.size > 50 ? asset.name[0,50] + '...' : asset.name
           - if colorbox
-            %em= asset.name
+            %em= name
           - else
             %em
-              %a{:href => route_to(:assets, asset.id, :edit)}= asset.name
+              %a{:href => route_to(:assets, asset.id, :edit)}= name
   %br.clearfix
   - unless colorbox
     %a.button.add-button{:href => route_to(model_name, 'create'), :style => "float: right"} Upload new asset
