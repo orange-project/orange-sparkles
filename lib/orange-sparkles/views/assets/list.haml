@@ -11,6 +11,7 @@
           - else
             %em
               %a{:href => route_to(:assets, asset.id, :edit)}= asset.name
+  %br.clearfix
 - if colorbox
   :javascript
     $(".asset-tile .asset_tag a").click(function(ret){ 
