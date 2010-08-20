@@ -720,6 +720,12 @@ table.tablesorter .headerSortDown {
 }
 .asset-tile img{
   max-width: 120px;
+  max-height: 120px;
+}
+
+.asset-tile .asset-tag{
+  width: 120px;
+  height: 120px;
 }
 
 .asset_preview img{
