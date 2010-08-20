@@ -10,3 +10,9 @@
   - else
     %p Couldn't find the item you're looking for.
 - packet["page.title"] = "Site Settings"
+- if orange.loaded?(:adverts)
+  %h2 Site Ads
+  = view_list(:adverts, :is_short => true)
+- if orange.loaded?(:contactforms)
+  %h2 Contact Forms
+  = view_list(:contactforms, :is_short => true)
