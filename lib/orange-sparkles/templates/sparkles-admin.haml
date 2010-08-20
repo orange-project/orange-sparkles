@@ -23,6 +23,7 @@
       %div.tab-container
         / %a.tab#home-tab{:href => "#"} Home
         %a.tab#sitemap-tab{:href => route_to(:sitemap)} Pages
+        %a.tab#assets-tab{:href => route_to(:assets)} Assets
         - for link in (orange[:admin].links(packet)["tabs"] || [])
           %style= "body##{link[:resource]} a##{link[:resource]}-tab{ background: #999999;}"
           %a.tab{:id => "#{link[:resource]}-tab", :href => route_to(link[:resource])}= link[:text]
