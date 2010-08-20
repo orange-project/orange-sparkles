@@ -18,6 +18,8 @@
             %em
               %a{:href => route_to(:assets, asset.id, :edit)}= asset.name
   %br.clearfix
+  -unless colorbox
+    %a.button.add-button{:href => route_to(model_name, 'create')} Add new image
 - if colorbox
   :javascript
     $(".asset-tile .asset_tag a").click(function(ret){ 
