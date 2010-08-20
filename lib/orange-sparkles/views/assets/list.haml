@@ -1,19 +1,30 @@
-.asset-list
-  - for asset in list
-    .asset-tile{:id => asset.id}
-      %p.asset_tag= asset.to_asset_tag
-      %p
-        %em= asset.name
-:javascript
-  $(".asset-tile").click(function(ret){ 
-    var tile = $(this);
-    var link = $.fn.colorbox.element();
-    var preview = link.prev();
-    var input_name = link.attr('rel');
-    var id = tile.attr("id");
-    preview.html(tile.children(".asset_tag").html());
-    $("[name*='"+input_name+"']").attr("value", id);
-    link.attr("href", "/admin/assets/"+tile.attr("id")+"/change");
-    link.text("Change Asset");
-    $.fn.colorbox.close();
-  });
+- packet.add_js("page-list-effects.js", :module => "_sparkles_")
+- colorbox ||= false
+.list-view
+  .asset-list
+    - for asset in list
+      .asset-tile{:id => asset.id}
+        %p.asset_tag= asset.to_asset_tag
+        %p
+          - if colorbox
+            %em= asset.name
+          - else
+            %em
+              %a{:href => route_to(:assets, asset.id, :edit)}= asset.name
+- if colorbox
+  :javascript
+    $(".asset-tile .asset_tag a").click(function(ret){ 
+      return false;
+    });
+    $(".asset-tile").click(function(ret){ 
+      var tile = $(this);
+      var link = $.fn.colorbox.element();
+      var preview = link.prev();
+      var input_name = link.attr('rel');
+      var id = tile.attr("id");
+      preview.html(tile.children(".asset_tag").html());
+      $("[name*='"+input_name+"']").attr("value", id);
+      link.attr("href", "/admin/assets/"+tile.attr("id")+"/change");
+      link.text("Change Asset");
+      $.fn.colorbox.close();
+    });

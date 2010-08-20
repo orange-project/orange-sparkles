@@ -5,6 +5,9 @@
       %p
         %em= asset.name
 :javascript
+  $(".asset-tile .asset_tag a").click(function(ret){ 
+    return false;
+  });
   $(".asset-tile").click(function(ret){ 
     var tile = $(this);
     var id = tile.attr("id");

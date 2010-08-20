@@ -6,7 +6,7 @@
 .choose-asset{:style => "display: none"}
   %h2 Choose a previously uploaded image
   %hr
-  = view_list(:assets)
+  = view_list(:assets, :colorbox => true)
 .current-asset
   %hr
   %a.asset-chooser-toggle{:href => "#"} Choose a previously uploaded image instead
