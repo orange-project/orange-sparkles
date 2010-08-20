@@ -29,7 +29,13 @@
     });
     $(".asset-tile").click(function(ret){ 
       var tile = $(this);
+      var link = $.fn.colorbox.element();
+      var preview = link.prev();
+      var input_name = link.attr('rel');
       var id = tile.attr("id");
-      $.markItUp({ replaceWith: '<o:asset id="'+id+'" />' } );
+      preview.html(tile.children(".asset_tag").html());
+      $("[name*='"+input_name+"']").attr("value", id);
+      link.attr("href", "/admin/assets/"+tile.attr("id")+"/change");
+      link.text("Change Asset");
       $.fn.colorbox.close();
     });
