@@ -1,11 +1,21 @@
 .asset-list
   - for asset in list
     .asset-tile{:id => asset.id}
-      %p.asset_tag= asset.to_asset_tag
+      %p.asset_tag
+        -if(asset.image?)
+          = asset.to_asset_tag
+        -elsif(asset.pdf?)
+          %img{:src => '/assets/_sparkles_/images/pdf_icon.png'}
+        -else
+          %img{:src => '/assets/_sparkles_/images/file_icon.png'}
       %p
         %em= asset.name
 :javascript
   $(".asset-tile .asset_tag a").click(function(ret){ 
+    var tile = $(this).closest('.asset-tile');
+    var id = tile.attr("id");
+    $.markItUp({ replaceWith: '<o:asset id="'+id+'" />' } );
+    $.fn.colorbox.close();
     return false;
   });
   $(".asset-tile").click(function(ret){ 

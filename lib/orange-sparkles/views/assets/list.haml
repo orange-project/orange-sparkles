@@ -4,7 +4,13 @@
   .asset-list
     - for asset in list
       .asset-tile{:id => asset.id}
-        %p.asset_tag= asset.to_asset_tag
+        %p.asset_tag
+          -if(asset.image?)
+            = asset.to_asset_tag
+          -elsif(asset.pdf?)
+            %img{:src => '/assets/_sparkles_/images/pdf_icon.png'}
+          -else
+            %img{:src => '/assets/_sparkles_/images/file_icon.png'}
         %p
           - if colorbox
             %em= asset.name
@@ -15,17 +21,15 @@
 - if colorbox
   :javascript
     $(".asset-tile .asset_tag a").click(function(ret){ 
+      var tile = $(this).closest('.asset-tile');
+      var id = tile.attr("id");
+      $.markItUp({ replaceWith: '<o:asset id="'+id+'" />' } );
+      $.fn.colorbox.close();
       return false;
     });
     $(".asset-tile").click(function(ret){ 
       var tile = $(this);
-      var link = $.fn.colorbox.element();
-      var preview = link.prev();
-      var input_name = link.attr('rel');
       var id = tile.attr("id");
-      preview.html(tile.children(".asset_tag").html());
-      $("[name*='"+input_name+"']").attr("value", id);
-      link.attr("href", "/admin/assets/"+tile.attr("id")+"/change");
-      link.text("Change Asset");
+      $.markItUp({ replaceWith: '<o:asset id="'+id+'" />' } );
       $.fn.colorbox.close();
     });
