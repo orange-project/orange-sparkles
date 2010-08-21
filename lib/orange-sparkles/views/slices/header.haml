@@ -1,0 +1,5 @@
+%header.head
+  .logo
+    %h1= packet['site'] ? packet['site'].name : "An Orange Site"
+  %nav
+    = orange[:sitemap].one_level(packet)

@@ -1,0 +1,7 @@
+%footer.footer
+  .credits
+    - if !orange.options["footer_text"].blank?
+      = markdown(orange.options["footer_text"])
+    - else
+      %p
+        %span.strong= packet['site'] ? packet['site'].name : "An Orange Site"

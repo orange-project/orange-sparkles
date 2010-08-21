@@ -1,9 +1,8 @@
-#-s thin -p 5432
+#\-s thin -p 5432
 require "rubygems"
-require 'orange-sparkles'
+require '../../lib/orange-sparkles'
 
 app = Orange::SparklesApp.app
-app.orange.options["database"] = "mysql://osb:orange@localhost/orange_sparkles-test"
 app.orange.options["main_user"] = "therabidbanana@gmail.com"
 class Bar < Orange::Carton
   id

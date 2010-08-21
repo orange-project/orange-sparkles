@@ -12,6 +12,8 @@ require 'orange-more/subsites'
 require 'maruku'
 require 'rack/builder'
 require 'rack/abstract_format'
+require 'rack/openid'
+require 'openid_dm_store'
 
 require 'orange-sparkles/plugin'
 
@@ -22,37 +24,30 @@ class Orange::SparklesApp < Orange::Application
         packet.add_css('sparkles-admin.css', :position => 0, :module => '_sparkles_')
         packet.add_css('colorbox.css', :module => '_sparkles_')
         packet.add_css('smoothness/jquery-ui-1.7.2.custom.css', :module => '_sparkles_')
-        packet.add_js('jquery-1.4.1.min.js', :module => '_sparkles_')
         packet.add_js('markitup/sets/markdown/set.js', :module => '_sparkles_')
         packet.add_js('markitup/jquery.markitup.pack.js', :module => '_sparkles_')
         packet.add_js('autoresize.jquery.min.js', :module => '_sparkles_')
         packet.add_js('jquery-ui-1.7.2.custom.min.js', :module => '_sparkles_')
-        packet.add_js('jquery.form.js', :module => '_sparkles_')
-        packet.add_js('jquery.colorbox.js', :module => '_sparkles_')
-        packet.add_js('jquery.tools.min.js', :module => '_sparkles_')
-        packet.add_js('jquery.tablesorter.js', :module => '_sparkles_')
-        packet.add_js('jquery.tablesorter.pager.js', :module => '_sparkles_')
+        %w(form colorbox tools.min tablesorter tablesorter.pager).each do |js|
+          packet.add_js("jquery.#{js}.js", :module => '_sparkles_')
+        end
         packet.add_js('admin.js', :module => '_sparkles_')
         orange.fire(:view_admin, packet)
         'sparkles-admin.haml'
       elsif(packet['route.path'] == '/')
-        # packet.add_js('jquery-1.4.1.min.js', :module => '_sparkles_')
-        ['reset', '960_24_col', 'text', 'main'].each{|c| packet.add_css("#{c}.css", :module => '_sparkles_')}
+        ['reset', 'text', 'main'].each{|c| packet.add_css("#{c}.css", :module => '_sparkles_')}
         'home.haml'
       else
-        # packet.add_js('jquery-1.4.1.min.js', :module => '_sparkles_')
-        ['reset', '960_24_col', 'text', 'main'].each{|c| packet.add_css("#{c}.css", :module => '_sparkles_')}
+        ['reset', 'text', 'main'].each{|c| packet.add_css("#{c}.css", :module => '_sparkles_')}
         'subpage.haml'
       end
     end # end do
   end
   
   stack do
-    orange.options[:development_mode] = true
     use Rack::CommonLogger
     use Rack::MethodOverride
     use Rack::Session::Cookie, :secret => (orange.options['main_user'] || 'the_secret')
-    auto_reload!
     use_exceptions
     
     use Rack::OpenID, OpenIDDataMapper::DataMapperStore.new
@@ -87,6 +82,16 @@ class OrangeAsset
     </textarea>
     DOC
   end
+end
+
+class OrangePage
+  admin do
+    fulltext :sidebar
+  end
+end
+
+class OrangePageVersion
+  fulltext :sidebar
 end
 
 

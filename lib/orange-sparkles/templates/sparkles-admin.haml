@@ -2,6 +2,7 @@
 %html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en"}
   %head
     %title= part[:title, 'Orange Site'] 
+    %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"}
     %link{:rel => "stylesheet", :type => "text/css", :href => "http://yui.yahooapis.com/3.0.0/build/cssreset/reset-min.css"}
     = part[:css]
     = part[:js]
@@ -19,7 +20,7 @@
       %div#current-site-header 
         %span Currently editing:
         %br
-        %a.orange-text{:href => "/"}= packet['site'].name
+        %a.orange-text{:href => "/"}= orange[:sparkles].site_name(packet)
       %div.tab-container
         / %a.tab#home-tab{:href => "#"} Home
         %a.tab#sitemap-tab{:href => route_to(:sitemap)} Pages

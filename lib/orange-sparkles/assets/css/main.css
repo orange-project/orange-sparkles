@@ -1,0 +1,253 @@
+/* @override 
+	http://www.orangerb.com/assets/public/css/main.css
+	http://localhost:9292/assets/public/css/main.css
+*/
+
+body{
+	background: #b6daf2 url(/assets/_sparkles_/images/pattern_light.png);
+	background-position: -800px 0;
+	font-size: 100%;
+	padding: 3.3em 0;
+}
+
+a{
+  color: #dd7200;
+}
+
+header.head .logo{
+	padding: 2em 0 1.2em;
+}
+
+header.head .logo h1 {
+	font: 2em Georgia, "Times New Roman", Times, serif;
+	color: #002d56;
+	width: 100%;
+	text-align: center;
+	margin: 0;
+}
+
+header.head nav{
+	margin: 0 0 1em;
+	text-align: center;
+}
+
+header.head nav ul{
+	background: #b6daf2 url(/assets/_sparkles_/images/nav_rpt.png) repeat-x;
+	border-width: 3px 0 1px 0;
+	border-color: #002d56;
+	border-style: solid;
+	list-style: none;
+	margin: 0;
+	padding: 0.3em 0 0.2em;
+	font-size: 1.0em;
+	font-weight: bold;
+}
+
+header.head nav ul li{
+	display: inline;
+	margin: 0 0.1em;
+	padding: 0;
+}
+
+header.head nav a{
+	color: #002d56;
+	text-decoration: none;
+	border-bottom: none;
+	padding: 9px 10px 7px;
+}
+
+header.head nav a:link{
+	border-bottom: none;
+}
+
+header.head nav a:hover{
+	background: #002d56 url(/assets/_sparkles_/images/nav_active_rpt.png) repeat-x;
+	color: #fff;
+}
+
+
+body .container{
+	width: 75%;
+	min-width: 860px;
+	max-width: 960px;
+	background-color: #FFF;
+	border-radius: 0.5em;
+	-moz-border-radius: 0.5em; 
+	-webkit-border-radius: 0.5em;
+	box-shadow: 0px 1px 3px #666;
+	-moz-box-shadow: 0px 1px 3px #666;
+	-webkit-box-shadow: 0px 1px 3px #666;
+	margin: 0 auto;
+	font-family: "Myriad Pro", Myriad, Arial, Helvetica, sans-serif;
+}
+
+body .container .body{
+	color: #444;
+	margin-bottom: 1em;
+	padding-bottom: 0.5em;
+}
+
+body .container .body h3 {
+	margin-left: 0.8em;
+	color: #002d56;
+}
+
+body .container .body .content{
+	color: #444;
+	margin-top: 1em;
+	padding: 1em 1.5em 1em;
+	margin-bottom: 1em;
+	background: #fff url(/assets/_sparkles_/images/logo_wm.png) no-repeat bottom right;
+	width: 60%;
+	float: left;
+	border-right: 2px dotted #9cc8e6;
+}
+
+body .container .body img{
+	max-width: 575px;
+}
+
+
+body .container .body .fullwidthcontent {
+	width: 90%;
+	padding: 2em 1.5em 1em;
+	margin-bottom: 1em;
+}
+
+body .container .body .sidebar{
+	padding: 2em 0 1em;
+	margin-bottom: 1em;
+	width: 34%;
+	float: left;
+}
+
+body .body h1{
+	color: #666;
+	font-size: 1.8em;
+	border-bottom: 1px solid #bbb;
+}
+
+body .body .content>pre{
+	padding: 1em 1em 0.1em;
+	margin: 1em 3em;
+	font: 0.9em "Courier New", Courier, mono;
+	background-color: #666;
+	color: white;
+	border-radius: 1em;
+	-moz-border-radius: 1em; 
+	-webkit-border-radius: 1em;
+	border: 0.4em solid #aaa;
+}
+
+body .body blockquote{
+	padding: 1em 1em 0.1em;
+	margin: 1em 3em;
+	font: italic 0.9em Georgia, "Times New Roman", Times, serif;
+}
+
+body .body p{
+	margin: 0 1em 1em;
+}
+
+blockquote p, .body .content>pre code{
+	display: block;
+	margin: 0 0 1.1em;
+}
+
+.body footer.footer{
+	border-top: 1px solid #666;
+	margin: 0 2em;
+	color: #666;
+	position: relative;
+	min-height: 30px;
+	text-align: center;
+	padding: 1em 1em 0 1em;
+}
+
+.body footer.footer .credits{
+	text-align:center;
+}
+
+body .container .body section.content img{
+  max-width: 500px;
+}
+
+.body footer.footer a.logo{
+	background: url(/assets/_sparkles_/images/osb_light_transparent.png);
+	color: #ff7e0e;
+	font-size: 1px;
+	display: block;
+	overflow: hidden;
+	height: 71px;
+	width: 330px;
+	text-decoration: none;
+	text-indent: -1000px;
+}
+
+span.strong {
+	font-weight:bold;
+}
+
+br.clearfix {
+	clear: both;
+}
+
+span.pdf_link, span.file_link{
+  display: inline-block;
+  min-height: 48px;
+  margin-bottom: 0.5em;
+  background: url(/assets/_sparkles_/images/pdf_icon_small.png) center left no-repeat;
+}
+section.content span.pdf_link, section.content span.file_link{
+	margin-left: 2em;
+}
+section.sidebar span.pdf_link, section.sidebar span.file_link{
+  margin-left: 1em;
+  margin-right: 1em;
+}
+section.sidebar li span.pdf_link, section.sidebar li span.file_link{
+  margin-left: 0;
+}
+.contact_form .contact_phone { display : none;}
+
+section.sidebar img {
+	margin-left: 1em;
+}
+
+span.file_link{
+  background-image: url(/assets/_sparkles_/images/file_icon_small.png);
+}
+
+span.pdf_link a, span.file_link a{
+  display: inline-block;
+  padding-left: 62px;
+  padding-right: 2em;
+  padding-top: 0.4em;
+  min-height: 48px;
+}
+.center {
+	text-align: center;
+}
+
+form.contact_form {
+	width: 216px;
+	padding: 1em;
+	margin-left: 1em;
+	background: #d7f4fd;
+	border: 1px solid #9cc8e6;
+}
+
+.admin{
+  font-size: 0.7em;
+  color: #003a65;
+  text-align: center;
+}
+
+.admin a{
+  color: #003a65;
+}
+
+/* For email obfuscation: */
+span.hideme{
+  display: none;
+}

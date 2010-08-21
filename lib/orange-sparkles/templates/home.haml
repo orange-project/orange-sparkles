@@ -1,21 +1,25 @@
 !!! 5
 %html{:lang => "en"}
   %head
-    %title= packet['site'] ? packet['site'].name : "Orange Site"
+    %title= orange[:sparkles].site_name(packet)
     %meta{:charset => "utf-8"}
-    /[if lt IE 9]
-      %script{:src => "http://html5shiv.googlecode.com/svn/trunk/html5.js"}    
-    %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"}
     -# CSS
+    %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"}
     = part[:css]
     = part[:js]
+    - orange[:sparkles].stylesheets.each{|css| add_css("#{css}.css") }
+    - orange[:sparkles].javascripts.each{|js| add_js("#{css}.js") }
+    /[if lt IE 9]
+      %script{:src => "http://html5shiv.googlecode.com/svn/trunk/html5.js"}
   %body#home
-    .container.container_24
-      %header.head
-        .logo
-          %h1= packet['site'] ? packet['site'].name : "Orange Site"
-        %nav.clearfix
-          = orange[:sitemap].two_level(packet)
-          %br.clear
-      .body.grid_22.prefix_1.suffix_1
-        = yield
+    .container
+      %o:slice{:mode => "header"}
+      .body
+        - if(part[:sidebar]).blank?
+          %section.fullwidthcontent= yield
+        - else
+          %section.content= yield
+          %section.sidebar= part[:sidebar]
+        %br.clearfix
+        %o:slice{:mode => "footer"}
+    %o:slice{:mode => "administrivia"}
