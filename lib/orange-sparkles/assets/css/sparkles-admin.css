@@ -272,6 +272,9 @@ div#box-container {
 		width: 400px;
 		z-index: 1;
 	}
+	#edit-sidebar{
+		height: 200px;
+	}
 		#edit input[type='text'] {
 			border: 1px solid #bbbbbb;
 			font-size: 20px;
