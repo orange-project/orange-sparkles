@@ -12,7 +12,8 @@
           -else
             %img{:src => '/assets/_sparkles_/images/file_icon.png'}
         %p
-          - name = asset.name.size > 50 ? asset.name[0,50] + '...' : asset.name
+          - name = asset.name.size > 30 ? asset.name[0,30] + '...' : asset.name
+          - name = name.blank? ? "Untitled Asset ##{asset.id}" : name
           - if colorbox
             %em= name
           - else
