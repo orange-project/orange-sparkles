@@ -8,7 +8,7 @@
           %img{:src => '/assets/_sparkles_/images/pdf_icon.png'}
         -else
           %img{:src => '/assets/_sparkles_/images/file_icon.png'}
-      %p
+      %p.asset_name
         - name = asset.name.size > 50 ? asset.name[0,50] + '...' : asset.name
         %em= name
 :javascript
