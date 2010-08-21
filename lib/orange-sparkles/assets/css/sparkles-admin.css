@@ -728,6 +728,10 @@ table.tablesorter .headerSortDown {
   height: 120px;
 }
 
+.asset-tile .asset_name{
+  height: 30px;
+}
+
 .asset_preview img{
   max-width: 500px;
   display: block;
