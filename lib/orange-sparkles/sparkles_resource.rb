@@ -9,4 +9,7 @@ class SparklesResource < Orange::Resource
   def site_name(packet, default = "An Orange Site")
     packet['site'] ? packet['site'].name : default
   end
+  def sidebar?
+    orange.options["sidebar_on", false]
+  end
 end
