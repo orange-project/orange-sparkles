@@ -97,7 +97,8 @@ body#subsites a#sites-tab,
 body#events a#events-tab,
 body#news a#news-tab,
 body#blog_posts a#blog-tab,
-body#members a#members-tab
+body#members a#members-tab,
+body#assets a#assets-tab
 {
 	background: #999999;
 	z-index: 0;
