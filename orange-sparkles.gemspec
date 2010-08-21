@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{orange-sparkles}
-  s.version = "0.5.8"
+  s.version = "0.5.9"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["David Haslem"]
-  s.date = %q{2010-08-18}
+  s.date = %q{2010-08-20}
   s.description = %q{This gem is a CMS theme for orange}
   s.email = %q{therabidbanana@gmail.com}
   s.extra_rdoc_files = [
@@ -18,7 +18,6 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     "lib/orange-sparkles.rb",
-     "lib/orange-sparkles/assets/css/960_24_col.css",
      "lib/orange-sparkles/assets/css/border-radius.htc",
      "lib/orange-sparkles/assets/css/colorbox.css",
      "lib/orange-sparkles/assets/css/main.css",
@@ -57,6 +56,8 @@ Gem::Specification.new do |s|
      "lib/orange-sparkles/assets/images/expand.png",
      "lib/orange-sparkles/assets/images/facebook_sticker.png",
      "lib/orange-sparkles/assets/images/facebook_sticker_small.png",
+     "lib/orange-sparkles/assets/images/file_icon.png",
+     "lib/orange-sparkles/assets/images/file_icon_small.png",
      "lib/orange-sparkles/assets/images/google-small.png",
      "lib/orange-sparkles/assets/images/green-button.png",
      "lib/orange-sparkles/assets/images/grey-button.png",
@@ -85,6 +86,8 @@ Gem::Specification.new do |s|
      "lib/orange-sparkles/assets/images/move-outdent-disabled.png",
      "lib/orange-sparkles/assets/images/move-outdent.png",
      "lib/orange-sparkles/assets/images/move-up-disabled.png",
+     "lib/orange-sparkles/assets/images/nav_active_rpt.png",
+     "lib/orange-sparkles/assets/images/nav_rpt.png",
      "lib/orange-sparkles/assets/images/orange-button.png",
      "lib/orange-sparkles/assets/images/overlay.png",
      "lib/orange-sparkles/assets/images/page-list-last-child.png",
@@ -96,12 +99,16 @@ Gem::Specification.new do |s|
      "lib/orange-sparkles/assets/images/page-listing-link.png",
      "lib/orange-sparkles/assets/images/page-listing-page.png",
      "lib/orange-sparkles/assets/images/page-listing-subsite.png",
+     "lib/orange-sparkles/assets/images/pattern.png",
+     "lib/orange-sparkles/assets/images/pattern_light.png",
      "lib/orange-sparkles/assets/images/payment/amex.png",
      "lib/orange-sparkles/assets/images/payment/check.png",
      "lib/orange-sparkles/assets/images/payment/discover.png",
      "lib/orange-sparkles/assets/images/payment/mastercard.png",
      "lib/orange-sparkles/assets/images/payment/paypal.png",
      "lib/orange-sparkles/assets/images/payment/visa.png",
+     "lib/orange-sparkles/assets/images/pdf_icon.png",
+     "lib/orange-sparkles/assets/images/pdf_icon_small.png",
      "lib/orange-sparkles/assets/images/popout-shadow.png",
      "lib/orange-sparkles/assets/images/slider-background.png",
      "lib/orange-sparkles/assets/images/slider-bg-enabled-disabled.png",
@@ -123,6 +130,7 @@ Gem::Specification.new do |s|
      "lib/orange-sparkles/assets/images/twitter_sticker_small.png",
      "lib/orange-sparkles/assets/images/vimeo_sticker.png",
      "lib/orange-sparkles/assets/images/vimeo_sticker_small.png",
+     "lib/orange-sparkles/assets/images/yahoo-small.png",
      "lib/orange-sparkles/assets/images/youtube_sticker.png",
      "lib/orange-sparkles/assets/images/youtube_sticker_small.png",
      "lib/orange-sparkles/assets/js/admin.js",
@@ -195,7 +203,7 @@ Gem::Specification.new do |s|
      "lib/orange-sparkles/assets/js/popout-effects-page-edit.js",
      "lib/orange-sparkles/plugin.rb",
      "lib/orange-sparkles/sparkles_app.rb",
-     "lib/orange-sparkles/templates/admin.haml",
+     "lib/orange-sparkles/sparkles_resource.rb",
      "lib/orange-sparkles/templates/home.haml",
      "lib/orange-sparkles/templates/sparkles-admin.haml",
      "lib/orange-sparkles/templates/subpage.haml",
@@ -248,6 +256,9 @@ Gem::Specification.new do |s|
      "lib/orange-sparkles/views/sitemap/one_level.haml",
      "lib/orange-sparkles/views/sitemap/route_actions.haml",
      "lib/orange-sparkles/views/sitemap/table_row.haml",
+     "lib/orange-sparkles/views/slices/administrivia.haml",
+     "lib/orange-sparkles/views/slices/footer.haml",
+     "lib/orange-sparkles/views/slices/header.haml",
      "lib/orange-sparkles/views/slices/lorem.haml",
      "lib/orange-sparkles/views/slices/slice_helper.haml",
      "lib/orange-sparkles/views/users/create.haml",
