@@ -14,6 +14,7 @@ class SparklesResource < Orange::Resource
     orange.options["sidebar_on"] || false
   end
   def tabs
-    orange.options["sparkles.tabs"].collect{|hash| Mash.new(hash)} || []
+    tabs = orange.options["sparkles.tabs"] || []
+    tabs.collect{|hash| Mash.new(hash)} || []
   end
 end
