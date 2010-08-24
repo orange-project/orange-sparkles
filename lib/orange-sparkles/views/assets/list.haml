@@ -19,6 +19,7 @@
           - else
             %em
               %a{:href => route_to(:assets, asset.id, :edit)}= name
+              = delete_button(route_to(:assets, asset.id, "delete"))
   %br.clearfix
   - unless colorbox
     %a.button.add-button{:href => route_to(model_name, 'create'), :style => "float: right"} Upload new asset

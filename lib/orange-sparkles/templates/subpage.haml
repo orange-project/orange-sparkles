@@ -4,10 +4,10 @@
     %title= part[:page_title] +" - "+ orange[:sparkles].site_name(packet)
     %meta{:charset => "utf-8"}
     %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"}
-    = part[:css]
-    = part[:js]
     - orange[:sparkles].stylesheets.each{|css| add_css("#{css}.css") }
     - orange[:sparkles].javascripts.each{|js| add_js("#{css}.js") }
+    = part[:css]
+    = part[:js]
     /[if lt IE 9]
       %script{:src => "http://html5shiv.googlecode.com/svn/trunk/html5.js"}
   %body#home
