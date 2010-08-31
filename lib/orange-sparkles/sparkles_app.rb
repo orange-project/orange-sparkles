@@ -34,10 +34,12 @@ class Orange::SparklesApp < Orange::Application
         orange.fire(:view_admin, packet)
         'sparkles-admin.haml'
       elsif(packet['route.path'] == '/')
-        ['reset', 'text', 'main'].each{|c| packet.add_css("#{c}.css", :module => '_sparkles_')}
+        ['reset', 'text'].each{|c| packet.add_css("#{c}.css", :module => '_sparkles_')}
+        ['main'].each{|c| packet.add_css("#{c}.css", :module => '_sparkles_')} if orange[:sparkles].default_style?
         'home.haml'
       else
-        ['reset', 'text', 'main'].each{|c| packet.add_css("#{c}.css", :module => '_sparkles_')}
+        ['reset', 'text'].each{|c| packet.add_css("#{c}.css", :module => '_sparkles_')}
+        ['main'].each{|c| packet.add_css("#{c}.css", :module => '_sparkles_')} if orange[:sparkles].default_style?
         'subpage.haml'
       end
     end # end do

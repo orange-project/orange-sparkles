@@ -17,4 +17,7 @@ class SparklesResource < Orange::Resource
     tabs = orange.options["sparkles.tabs"] || []
     tabs.collect{|hash| Mash.new(hash)} || []
   end
+  def default_style?
+    orange.options["sparkles.default_style"] || false
+  end
 end

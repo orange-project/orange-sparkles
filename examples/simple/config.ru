@@ -1,9 +1,10 @@
 #\-s thin -p 5432
 require "rubygems"
 require '../../lib/orange-sparkles'
-
 app = Orange::SparklesApp.app
-app.orange.options["main_user"] = "therabidbanana@gmail.com"
+app.orange.options["main_user"] = ["therabidbanana@gmail.com"]
+app.orange.options["main_users"] = ["therabidbanana@gmail.com", "david@orangesparkleball.com"]
+app.orange.options[:development_mode] = true
 class Bar < Orange::Carton
   id
   admin do
@@ -16,10 +17,10 @@ end
 class Foo < Orange::ModelResource
   use Bar
   def stack_init
-    orange[:admin].add_link("tabs", {:resource => :foo, :text => "Foobarbazyo"})
+    
   end
 end
 
 app.orange.load(Foo.new)
-
+app.orange.options[:s3_bucket] = "orange-test"
 run app
