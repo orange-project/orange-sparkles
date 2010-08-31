@@ -97,7 +97,7 @@ body .container .body .content{
 	margin-top: 1em;
 	padding: 1em 1.5em 1em;
 	margin-bottom: 1em;
-	background: #fff url(/assets/_sparkles_/images/logo_wm.png) no-repeat bottom right;
+	background: #fff;
 	width: 60%;
 	float: left;
 	border-right: 2px dotted #9cc8e6;
