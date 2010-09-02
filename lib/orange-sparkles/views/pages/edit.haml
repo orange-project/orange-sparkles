@@ -32,7 +32,7 @@
           %hr.one-px-grey
         .control-label
           - unless(orange[:pages].route_for(packet, model.id).blank? || orange[:pages].route_for(packet, model.id).rindex('/').blank?)
-            - orange.loaded?(:analytics)
+            - if orange.loaded?(:analytics)
               %strong Total Views: #{orange[:analytics].pageviews(orange[:pages].route_for(packet, model.id))} hits
               %br
               %strong This Month's Views: #{orange[:analytics].pageviews(orange[:pages].route_for(packet, model.id), :start_date => Time.now.localtime.strftime("%Y-%m-01"))} hits
