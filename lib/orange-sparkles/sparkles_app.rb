@@ -8,12 +8,11 @@ require 'orange-more/disqus'
 # require 'orange-more/analytics'
 require 'orange-more/cloud'
 require 'orange-more/debugger'
-require 'maruku'
 require 'rack/builder'
 require 'rack/abstract_format'
 require 'rack/openid'
 require 'openid_dm_store'
-
+require 'kramdown'
 require 'orange-sparkles/plugin'
 
 class Orange::SparklesApp < Orange::Application
@@ -100,7 +99,7 @@ module SparkleHelpers
   def markdown(string)
     # Preparse for radius
     string = orange[:radius].parse_text(self, string)
-    Maruku.new(string).to_html
+    Kramdown::Document.new(string).to_html
   end
   def lorem(chars = 300)
     chars = chars.to_i
