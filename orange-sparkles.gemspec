@@ -277,18 +277,18 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<orange-core>, [">= 0.5.7"])
       s.add_runtime_dependency(%q<orange-more>, [">= 0.5.7"])
-      s.add_runtime_dependency(%q<maruku>, [">= 0"])
+      s.add_runtime_dependency(%q<kramdown>, [">= 0"])
       s.add_runtime_dependency(%q<rack-abstract-format>, [">= 0"])
     else
       s.add_dependency(%q<orange-core>, [">= 0.5.7"])
       s.add_dependency(%q<orange-more>, [">= 0.5.7"])
-      s.add_dependency(%q<maruku>, [">= 0"])
+      s.add_dependency(%q<kramdown>, [">= 0"])
       s.add_dependency(%q<rack-abstract-format>, [">= 0"])
     end
   else
     s.add_dependency(%q<orange-core>, [">= 0.5.7"])
     s.add_dependency(%q<orange-more>, [">= 0.5.7"])
-    s.add_dependency(%q<maruku>, [">= 0"])
+    s.add_dependency(%q<kramdown>, [">= 0"])
     s.add_dependency(%q<rack-abstract-format>, [">= 0"])
   end
 end
