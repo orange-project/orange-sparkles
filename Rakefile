@@ -13,7 +13,7 @@ begin
     gem.files = FileList['lib/**/*']
     gem.add_dependency "orange-core", ">= 0.5.7"
     gem.add_dependency "orange-more", ">= 0.5.7"
-    gem.add_dependency "kramdown", ">= 0"
+    gem.add_dependency "maruku", ">= 0"
     gem.add_dependency "rack-abstract-format", ">= 0"
     # gem.add_development_dependency "rspec", ">= 0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings

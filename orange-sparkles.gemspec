@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["David Haslem"]
-  s.date = %q{2010-09-01}
+  s.date = %q{2010-09-05}
   s.description = %q{This gem is a CMS theme for orange}
   s.email = %q{therabidbanana@gmail.com}
   s.extra_rdoc_files = [
@@ -277,18 +277,18 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<orange-core>, [">= 0.5.7"])
       s.add_runtime_dependency(%q<orange-more>, [">= 0.5.7"])
-      s.add_runtime_dependency(%q<kramdown>, [">= 0"])
+      s.add_runtime_dependency(%q<maruku>, [">= 0"])
       s.add_runtime_dependency(%q<rack-abstract-format>, [">= 0"])
     else
       s.add_dependency(%q<orange-core>, [">= 0.5.7"])
       s.add_dependency(%q<orange-more>, [">= 0.5.7"])
-      s.add_dependency(%q<kramdown>, [">= 0"])
+      s.add_dependency(%q<maruku>, [">= 0"])
       s.add_dependency(%q<rack-abstract-format>, [">= 0"])
     end
   else
     s.add_dependency(%q<orange-core>, [">= 0.5.7"])
     s.add_dependency(%q<orange-more>, [">= 0.5.7"])
-    s.add_dependency(%q<kramdown>, [">= 0"])
+    s.add_dependency(%q<maruku>, [">= 0"])
     s.add_dependency(%q<rack-abstract-format>, [">= 0"])
   end
 end
