@@ -12,7 +12,7 @@ require 'rack/builder'
 require 'rack/abstract_format'
 require 'rack/openid'
 require 'openid_dm_store'
-require 'maruku'
+require 'kramdown'
 require 'orange-sparkles/plugin'
 
 class Orange::SparklesApp < Orange::Application
@@ -98,8 +98,8 @@ end
 module SparkleHelpers
   def markdown(string)
     # Preparse for radius
-    string = orange[:radius].parse_text(self, string)
-    Maruku::Document.new(string).to_html
+    # string = orange[:radius].parse_text(self, string)
+    Kramdown::Document.new(string).to_html
   end
   def lorem(chars = 300)
     chars = chars.to_i
