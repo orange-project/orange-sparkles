@@ -14,6 +14,6 @@
   %input{:type => 'submit', :value => 'Save New Item'}
 :javascript
   $("#asset-insert").ajaxForm({dataType: 'json', success: function(ret){ 
-    $.markItUp({ replaceWith: '<o:asset id="'+ret.id+'" />' } );
+    $.markItUp({ replaceWith: '<o:asset id="'+ret.id+'">'+ret.name+'</o:asset>' } );
     $.fn.colorbox.close();
   }});

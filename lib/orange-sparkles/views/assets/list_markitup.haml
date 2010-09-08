@@ -15,13 +15,15 @@
   $(".asset-tile .asset_tag a").click(function(ret){ 
     var tile = $(this).closest('.asset-tile');
     var id = tile.attr("id");
-    $.markItUp({ replaceWith: '<o:asset id="'+id+'" />' } );
+    var my_name = $(".asset_name", tile).text();
+    $.markItUp({ replaceWith: '<o:asset id="'+id+'">'+my_name+'</o:asset>' } );
     $.fn.colorbox.close();
     return false;
   });
   $(".asset-tile").click(function(ret){ 
     var tile = $(this);
     var id = tile.attr("id");
-    $.markItUp({ replaceWith: '<o:asset id="'+id+'" />' } );
+    var my_name = $(".asset_name", tile).text();
+    $.markItUp({ replaceWith: '<o:asset id="'+id+'">'+my_name+'</o:asset>' } );
     $.fn.colorbox.close();
   });
