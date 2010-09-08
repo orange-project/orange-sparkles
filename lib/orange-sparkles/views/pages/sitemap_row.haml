@@ -48,7 +48,7 @@
 %td
   %div.page-listing-actions
     %a.button.grey-button.preview-button{:href => route.full_path, :target => "_blank", :rel => "colorbox"}
-      Preview
+      View
     - unless route.level == 0
       = delete_button(route_to(:sitemap, route.id, "delete"))
       %a.button.grey-button.move-button{:href => "#"}

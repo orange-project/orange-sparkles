@@ -15,7 +15,7 @@
   $(".asset-tile .asset_tag a").click(function(ret){ 
     var tile = $(this).closest('.asset-tile');
     var id = tile.attr("id");
-    var my_name = $(".asset_name", tile).text();
+    var my_name = $(".asset_name", tile).text().trim();
     $.markItUp({ replaceWith: '<o:asset id="'+id+'">'+my_name+'</o:asset>' } );
     $.fn.colorbox.close();
     return false;
@@ -23,7 +23,7 @@
   $(".asset-tile").click(function(ret){ 
     var tile = $(this);
     var id = tile.attr("id");
-    var my_name = $(".asset_name", tile).text();
+    var my_name = $(".asset_name", tile).text().trim();
     $.markItUp({ replaceWith: '<o:asset id="'+id+'">'+my_name+'</o:asset>' } );
     $.fn.colorbox.close();
   });
