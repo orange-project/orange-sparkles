@@ -1,6 +1,6 @@
 .form-view
   - packet["page.title"] = "Users > Edit"
-  %form{:action => "#{packet.route_to(model_name, 'new')}", :method => 'post'}
+  %form{:action => "#{packet.route_to(model_name, 'new')}", :method => 'post', :"accept-charset" => "UTF-8"}
     - for prop in props
       %p= view_attribute(prop, model_name, :label => true)
     %fieldset

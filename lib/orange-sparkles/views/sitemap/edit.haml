@@ -1,10 +1,10 @@
 .form-view
   - if model
-    %form{:action => packet.route_to(model_name, model[:id], 'save'), :method => 'post'}
+    %form{:action => packet.route_to(model_name, model[:id], 'save'), :method => 'post', :"accept-charset" => "UTF-8"}
       - for prop in props
         %p!= view_attribute(prop, model_name, :label => true, :value => model.attribute_get(prop[:name]), :model => model)
       %input{:type => 'submit', :value => 'Save Changes'}
-    %form#move_me{:action => route_to(model_name, model[:id], 'into'), :method => 'post'}
+    %form#move_me{:action => route_to(model_name, model[:id], 'into'), :method => 'post', :"accept-charset" => "UTF-8"}
       %p
         %label Move into:
         %select{:onchange => "$('#move_me').attr('action', $('#move_me').attr('action')+'/'+$(this).val()); $('#move_me').submit();"}

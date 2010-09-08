@@ -1,5 +1,5 @@
 .form-view
-  %form{:action => "#{packet.route_to(model_name, 'new')}", :method => 'post'}
+  %form{:action => "#{packet.route_to(model_name, 'new')}", :method => 'post', :"accept-charset" => "UTF-8"}
     - packet["page.title"] = "Sitemap > Create Link/Folder"
     %p
       You can use this to create a new link or folder in the navigation

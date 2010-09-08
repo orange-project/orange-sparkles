@@ -1,5 +1,5 @@
 .form-view
-  %form{:action => "#{packet.route_to(model_name, 'new')}", :method => 'post'}
+  %form{:action => "#{packet.route_to(model_name, 'new')}", :method => 'post', :"accept-charset" => "UTF-8"}
     - packet["page.title"] = "#{model_name.to_s.capitalize} > Create"
     - for prop in props
       %p= view_attribute(prop, model_name, :label => true)

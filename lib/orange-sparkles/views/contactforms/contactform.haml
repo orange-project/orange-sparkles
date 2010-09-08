@@ -6,7 +6,7 @@
   %h3= model.title
   - if(flash['error'])
     .error= flash('error')
-  %form{ :class => 'contact_form', :id => 'contact_form_'+model.id.to_s, :action => route_to(:contactforms, :mailer, model.id), :method => 'POST' }
+  %form{ :class => 'contact_form', :id => 'contact_form_'+model.id.to_s, :action => route_to(:contactforms, :mailer, model.id), :method => 'POST' , :"accept-charset" => "UTF-8"}
     %p
       %label{ :for => 'contact_from'} Your Name
       %br

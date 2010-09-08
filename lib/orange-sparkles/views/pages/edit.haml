@@ -2,7 +2,7 @@
 - packet.add_js("popout-effects-generic.js", :module => "_sparkles_")
 - packet.add_js("popout-effects-page-edit.js", :module => "_sparkles_")
 %div#edit-box
-  %form#edit{:action => route_to(model_name, model.id, "save"), :method => "POST"}
+  %form#edit{:action => route_to(model_name, model.id, "save"), :method => "POST", :"accept-charset" => "UTF-8"}
     %label{:for => "edit-title"} Title
     %input#edit-title{:type => "text", :name => "#{model_name}[title]", :value => model.title}
     %textarea#edit-content{:cols => "32", :rows => "20", :name => "#{model_name}[body]", :class => 'markdown-editor'}<&= model.body

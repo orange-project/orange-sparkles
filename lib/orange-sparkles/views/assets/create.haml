@@ -1,6 +1,6 @@
 - colorbox ||= false
 .form-view
-  %form#asset-insert{:action => "#{packet.route_to(model_name, 'new')}", :method => 'post', :enctype=>"multipart/form-data"}
+  %form#asset-insert{:action => "#{packet.route_to(model_name, 'new')}", :method => 'post', :enctype=>"multipart/form-data", :"accept-charset" => "UTF-8"}
     - if colorbox
       %input{:type => 'hidden', :name => "fake_xhr", :value => "1"}
     - for prop in props
