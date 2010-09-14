@@ -13,7 +13,7 @@
     %div#header
       %div#user-status 
         Welcome, #{packet["user"] ? packet["user"].name : "User"}!
-        %a.orange-text{:href => "/logout"} Sign Out
+        %a.orange-text{:href => full_url('logout')} Sign Out
         %p
           %a{:href => route_to(:users)} Manage Users
           |
@@ -21,7 +21,7 @@
       %div#current-site-header 
         %span Currently editing:
         %br
-        %a.orange-text{:href => "/"}= orange[:sparkles].site_name(packet)
+        %a.orange-text{:href => orange[:mapper].root_url}= orange[:sparkles].site_name(packet)
       %div.tab-container
         / %a.tab#home-tab{:href => "#"} Home
         %a.tab#sitemap-tab{:href => route_to(:sitemap)} Pages

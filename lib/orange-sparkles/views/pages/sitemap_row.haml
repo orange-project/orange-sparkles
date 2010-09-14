@@ -31,7 +31,7 @@
       %div.page-listing-location
         Current Location:&nbsp; 
         %span.last-uri-segment><
-          = route.full_path
+          = route_to(route)
       .menu-toggle
         Show in Menu:&nbsp;
         = button("Yes", route_to(:sitemap, route.id, :show_in_nav), :css_class => route.show_in_nav ? "white-button" : "grey-button")
@@ -47,7 +47,7 @@
         = button("Draft", route_to(model_name, model.id, 'publish'), :css_class => "status-draft")
 %td
   %div.page-listing-actions
-    %a.button.grey-button.preview-button{:href => route.full_path, :target => "_blank", :rel => "colorbox"}
+    %a.button.grey-button.preview-button{:href => route_to(route), :target => "_blank", :rel => "colorbox"}
       View
     - unless route.level == 0
       = delete_button(route_to(:sitemap, route.id, "delete"))

@@ -1,59 +1,60 @@
 - packet["page.title"] = "Pages > Edit"
 - packet.add_js("popout-effects-generic.js", :module => "_sparkles_")
 - packet.add_js("popout-effects-page-edit.js", :module => "_sparkles_")
-%div#edit-box
-  %form#edit{:action => route_to(model_name, model.id, "save"), :method => "POST", :"accept-charset" => "UTF-8"}
-    %label{:for => "edit-title"} Title
-    %input#edit-title{:type => "text", :name => "#{model_name}[title]", :value => model.title}
-    %textarea#edit-content{:cols => "32", :rows => "20", :name => "#{model_name}[body]", :class => 'markdown-editor'}<&= model.body
-    %br
-    - if(orange[:sparkles].sidebar?)
-      %label{:for => "edit-sidebar"} Sidebar
-      %textarea#edit-sidebar{:cols => "32", :rows => "12", :name => "#{model_name}[sidebar]", :class => 'markdown-editor'}<&= model.sidebar
-    %div#save-status
-      #{model.published ? "Published" : "Draft saved"}
-    %input#publish-me{:type => "hidden", :name => "#{model_name}[published]", :value => "0"}
-    %div#button-container
-      %input#save-draft{:type => "button", :onclick => "$('#save-status').text('Saving draft...'); $('#edit').ajaxSubmit({success: function(){$('#save-status').text('Draft saved.');}, method: 'post'}); return false;", :value => "Save Draft"}
-      %input#publish{:type => "button", :onclick => "$('#publish-me').val('1'); $('#edit').submit(); return false;", :value => "Publish"}
-%div#popout-box
-  %div#popout-titlebar
-    Settings
-    %div#popout-collapse
-      %a#collapse{:href => "#"}
-        %img{:src => "/assets/_sparkles_/images/collapse-left.png", :border => "0"}
-  %div.page-settings-container
-    %div.page-settings-container-current
-      %div#page-settings-container-1
-        .control-label
-          .preview-container
-            %a.button.grey-button{:onclick => " $('#edit').ajaxSubmit({async: false, beforeSubmit: function(){$('#save-status').text('Saving draft before preview...');}, success: function(){$('#save-status').text('Draft saved.')}});", :href => route_to(:pages, model.id, :show, :context => "preview"), :target => "_blank", :rel => "colorbox"} Show Preview
-            %a.button.green-button{:href => orange[:pages].route_for(packet, model.id), :target => "_blank", :rel => "colorbox"} Show Live
+- if(model)
+  %div#edit-box
+    %form#edit{:action => route_to(model_name, model.id, "save"), :method => "POST", :"accept-charset" => "UTF-8"}
+      %label{:for => "edit-title"} Title
+      %input#edit-title{:type => "text", :name => "#{model_name}[title]", :value => model.title}
+      %textarea#edit-content{:cols => "32", :rows => "20", :name => "#{model_name}[body]", :class => 'markdown-editor'}<&= model.body
+      %br
+      - if(orange[:sparkles].sidebar?)
+        %label{:for => "edit-sidebar"} Sidebar
+        %textarea#edit-sidebar{:cols => "32", :rows => "12", :name => "#{model_name}[sidebar]", :class => 'markdown-editor'}<&= model.sidebar
+      %div#save-status
+        #{model.published ? "Published" : "Draft saved"}
+      %input#publish-me{:type => "hidden", :name => "#{model_name}[published]", :value => "0"}
+      %div#button-container
+        %input#save-draft{:type => "button", :onclick => "$('#save-status').text('Saving draft...'); $('#edit').ajaxSubmit({success: function(){$('#save-status').text('Draft saved.');}, method: 'post'}); return false;", :value => "Save Draft"}
+        %input#publish{:type => "button", :onclick => "$('#publish-me').val('1'); $('#edit').submit(); return false;", :value => "Publish"}
+  %div#popout-box
+    %div#popout-titlebar
+      Settings
+      %div#popout-collapse
+        %a#collapse{:href => "#"}
+          %img{:src => "/assets/_sparkles_/images/collapse-left.png", :border => "0"}
+    %div.page-settings-container
+      %div.page-settings-container-current
+        %div#page-settings-container-1
+          .control-label
+            .preview-container
+              %a.button.grey-button{:onclick => " $('#edit').ajaxSubmit({async: false, beforeSubmit: function(){$('#save-status').text('Saving draft before preview...');}, success: function(){$('#save-status').text('Draft saved.')}});", :href => route_to(:pages, model.id, :show, :context => "preview"), :target => "_blank", :rel => "colorbox"} Show Preview
+              %a.button.green-button{:href => orange[:pages].route_for(packet, model.id), :target => "_blank", :rel => "colorbox"} Show Live
+            %hr.one-px-grey
+          .control-label
+            - unless(orange[:pages].route_for(packet, model.id).blank? || orange[:pages].route_for(packet, model.id).rindex('/').blank?)
+              - if orange.loaded?(:analytics)
+                %strong Total Views: #{orange[:analytics].pageviews(orange[:pages].route_for(packet, model.id))} hits
+                %br
+                %strong This Month's Views: #{orange[:analytics].pageviews(orange[:pages].route_for(packet, model.id), :start_date => Time.now.localtime.strftime("%Y-%m-01"))} hits
+                %br
+        %div#page-settings-container-2
+          %div#page-summary.control-label
+            Page Summary (optional)
+            %div.settings-collapse
+              %a.collapse-up{:href => "#"}
+                %img{:src => "/assets/_sparkles_/images/collapse-up.png", :border => "0"}
+            %br
+            %div#page-summary-textarea.settings-area
+              %textarea#edit-page-summary.autosize
           %hr.one-px-grey
-        .control-label
-          - unless(orange[:pages].route_for(packet, model.id).blank? || orange[:pages].route_for(packet, model.id).rindex('/').blank?)
-            - if orange.loaded?(:analytics)
-              %strong Total Views: #{orange[:analytics].pageviews(orange[:pages].route_for(packet, model.id))} hits
-              %br
-              %strong This Month's Views: #{orange[:analytics].pageviews(orange[:pages].route_for(packet, model.id), :start_date => Time.now.localtime.strftime("%Y-%m-01"))} hits
-              %br
-      %div#page-settings-container-2
-        %div#page-summary.control-label
-          Page Summary (optional)
-          %div.settings-collapse
-            %a.collapse-up{:href => "#"}
-              %img{:src => "/assets/_sparkles_/images/collapse-up.png", :border => "0"}
-          %br
-          %div#page-summary-textarea.settings-area
-            %textarea#edit-page-summary.autosize
-        %hr.one-px-grey
-        %div#page-keywords.control-label
-          Page Keywords (optional)
-          %div.settings-collapse
-            %a.collapse-up{:href => "#"}
-              %img{:src => "/assets/_sparkles_/images/collapse-up.png", :border => "0"}
-          %br
-          %div#page-keywords-textarea.settings-area
-            %textarea#edit-page-keywords.autosize
-        %hr.one-px-grey
-%br.clearfix
+          %div#page-keywords.control-label
+            Page Keywords (optional)
+            %div.settings-collapse
+              %a.collapse-up{:href => "#"}
+                %img{:src => "/assets/_sparkles_/images/collapse-up.png", :border => "0"}
+            %br
+            %div#page-keywords-textarea.settings-area
+              %textarea#edit-page-keywords.autosize
+          %hr.one-px-grey
+  %br.clearfix

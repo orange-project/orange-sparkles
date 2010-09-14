@@ -63,22 +63,14 @@ class Orange::SparklesApp < Orange::Application
 end
 
 class Orange::AssetResource < Orange::ModelResource
-  def markitup_insert(packet, opts = {})
-    do_view(packet, :markitup_insert, opts)
-  end
-  def create_markitup(packet, opts = {})
-    do_view(packet, :create_markitup, opts)
-  end
-  def list_markitup(packet, opts = {})
-    do_view(packet, :list_markitup, opts)
-  end
+  viewable :markitup_insert, :create_markitup, :list_markitup
 end
 
 class OrangeAsset
   def to_s
     <<-DOC
     <textarea>
-    {"id": #{self.id}, "html": "#{self.to_asset_tag}"}
+    {"id": #{self.id}, "name": "#{self.name}", "caption": "#{self.caption}", "html": "#{self.to_asset_tag}"}
     </textarea>
     DOC
   end

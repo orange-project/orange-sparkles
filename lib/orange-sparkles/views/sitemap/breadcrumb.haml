@@ -2,30 +2,30 @@
   %p
     - if packet['route.main_site_route'] && model.ancestors.count > 0
       - for a in packet['route.main_site_route'].self_and_ancestors
-        %a{:href => a.full_path}= orange[:sitemap].link_text_for(a)
+        %a{:href => route_to(a)}= orange[:sitemap].link_text_for(a)
         &gt;
       - for a in (model.ancestors - model.root)
-        %a{:href => a.full_path}= orange[:sitemap].link_text_for(a)
+        %a{:href => route_to(a)}= orange[:sitemap].link_text_for(a)
         &gt;
       %span.here= orange[:sitemap].link_text_for(model)
     - elsif packet['route.main_site_route']
       - for a in packet['route.main_site_route'].ancestors
-        %a{:href => a.full_path}= orange[:sitemap].link_text_for(a)
+        %a{:href => route_to(a)}= orange[:sitemap].link_text_for(a)
         &gt;
       %span.here= orange[:sitemap].link_text_for packet['route.main_site_route']
     - else
       - for a in model.ancestors
-        %a{:href => a.full_path}= orange[:sitemap].link_text_for(a)
+        %a{:href => route_to(a)}= orange[:sitemap].link_text_for(a)
         &gt;
       %span.here= orange[:sitemap].link_text_for(model)
 - else # Possibly a restful route
   %p
     - if packet['route.main_site_route']
       - for a in packet['route.main_site_route'].self_and_ancestors
-        %a{:href => a.full_path}= orange[:sitemap].link_text_for(a)
+        %a{:href => route_to(a)}= orange[:sitemap].link_text_for(a)
         &gt;
     - else
       - home = orange[:sitemap].home(packet)
-      %a{:href => home.full_path}= orange[:sitemap].link_text_for(home)
+      %a{:href => route_to(home)}= orange[:sitemap].link_text_for(home)
       &gt;
     %span.here= packet['route.resource'].to_s.capitalize
