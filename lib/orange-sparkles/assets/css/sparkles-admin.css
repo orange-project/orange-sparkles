@@ -463,7 +463,7 @@ div#box-container {
 		padding: 10px;
 		width: 930px;
 	}
-	.cboxContent #pages-list, .cboxContent .list-view, .cboxContent .form-view{
+	#cboxContent #pages-list, #cboxContent .list-view, #cboxContent .form-view{
 		width: 90%;
 	}
 	#pages-list table, .list-view table{
