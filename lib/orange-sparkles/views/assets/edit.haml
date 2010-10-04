@@ -1,0 +1,36 @@
+- colorbox ||= packet.request.xhr?
+.form-view
+  %form#asset-insert{:action => "#{packet.route_to(model_name, 'new')}", :method => 'post', :enctype=>"multipart/form-data", :"accept-charset" => "UTF-8"}
+    - if colorbox
+      %input{:type => 'hidden', :name => "fake_xhr", :value => "1"}
+    - for prop in props
+      - next if [:path, :secondary_path].include?(prop[:name])
+      %p= view_attribute(prop, model_name, :label => true)
+    / %p
+    /   %label Secondary File
+    /   %br
+    /   %input{:type => 'file', :name => "#{model_name}[file2]"}
+    %input{:type => 'submit', :value => 'Save New Item'}
+    .current-asset
+      %hr
+      %p 
+        Currently chosen image:
+        %em= model.name
+      .preview
+        = model.to_asset_tag
+      %p
+        %label To Replace File - Choose a new one below:
+        %br
+        %input{:type => 'file', :name => "#{model_name}[file]"}
+- if colorbox
+  :javascript
+    $("#asset-insert").ajaxForm({dataType: 'json', success: function(ret){ 
+      var link = $.fn.colorbox.element();
+      var preview = link.prev();
+      var input_name = link.attr('rel');
+      preview.html(ret.html);
+      $("[name*='"+input_name+"']").attr("value", ret.id);
+      link.attr("href", "/admin/assets/"+ret.id+"/change");
+      link.text("Change Asset");
+      $.fn.colorbox.close();
+    }});
