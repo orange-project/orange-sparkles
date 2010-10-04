@@ -464,7 +464,8 @@ div#box-container {
 		width: 930px;
 	}
 	#cboxContent #pages-list, #cboxContent .list-view, #cboxContent .form-view{
-		width: 90%;
+		width: 95%;
+		margin: 10px auto;
 	}
 	#pages-list table, .list-view table{
 		width: 100%;
