@@ -14,6 +14,9 @@
     %h2 You'll need to log in before you can continue.
     %div#login-box
       %form#login{:name => "login", :method => "post", :action => ""}
+        - unless packet.flash['login.message'].blank?
+          .message
+            %p= packet.flash('login.message')
         %label.center-block
           Login with Google
         %a.center-block{:href => "#", :onclick => "$(\"#login-openid\").val(\"https://www.google.com/accounts/o8/id\"); $(\"form#login\").submit(); return false;"}
