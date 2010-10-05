@@ -187,10 +187,17 @@ div#current-site-header {
 	border: 1px solid #d7d7d7;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
-	height: 226px;
 	margin: 140px auto;
 	padding:15px;
 	width: 176px;
+}
+#login .message{
+	background: #efa;
+	border: 1px solid #bc8;
+	padding: 0.5em;
+	font-size: 0.9em;
+	text-align: center;
+	margin: 0 0 1em;
 }
 #login label {
 	color: #575555;
