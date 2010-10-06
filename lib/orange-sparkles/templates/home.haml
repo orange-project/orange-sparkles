@@ -6,7 +6,7 @@
     -# CSS
     %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"}
     - orange[:sparkles].stylesheets.each{|css| add_css("#{css}.css") }
-    - orange[:sparkles].javascripts.each{|js| add_js("#{css}.js") }
+    - orange[:sparkles].javascripts.each{|js| add_js("#{js}.js") }
     = part[:css]
     = part[:js]
     /[if lt IE 9]

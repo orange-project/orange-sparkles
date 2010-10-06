@@ -1,10 +1,13 @@
 #\-s thin -p 5432
 require "rubygems"
 require '../../lib/orange-sparkles'
-app = Orange::SparklesApp.app
-app.orange.options["main_user"] = ["therabidbanana@gmail.com"]
-app.orange.options["main_users"] = ["therabidbanana@gmail.com", "david@orangesparkleball.com"]
-app.orange.options[:development_mode] = true
+app = Orange::SparklesApp.app do
+  main_user           "therabidbanana@gmail.com"
+  main_users          ["therabidbanana@gmail.com", "david@orangesparkleball.com"]
+  development_mode    true
+  s3_bucket           "orange-test"
+  site_name           "foobar"
+end
 class Bar < Orange::Carton
   id
   admin do
