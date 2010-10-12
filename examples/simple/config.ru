@@ -1,4 +1,3 @@
-#\-s thin -p 5432
 require "rubygems"
 require '../../lib/orange-sparkles'
 app = Orange::SparklesApp.app do
@@ -14,6 +13,7 @@ class Bar < Orange::Carton
     text :foo
     text :bar
     text :baz
+    fulltext :qux
   end
 end
 
