@@ -3,7 +3,7 @@
     &nbsp;
   - for prop in props
     - if(prop[:relationship])
-      / foo
+      %td &nbsp;
     - else
       %td= model.attribute_get(prop[:name])
   %td.actions
