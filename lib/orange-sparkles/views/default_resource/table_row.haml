@@ -2,7 +2,10 @@
   %td.move
     &nbsp;
   - for prop in props
-    %td= model.attribute_get(prop[:name])
+    - if(prop[:relationship])
+      / foo
+    - else
+      %td= model.attribute_get(prop[:name])
   %td.actions
     %div.page-listing-actions
       %a.button.grey-button.preview-button{:href => route_to(model_name, model.id, "edit")}
