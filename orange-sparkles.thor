@@ -2,24 +2,22 @@ class OrangeSparkles < Thor::Group
   include Thor::Actions
   
   argument :name
+  class_options :edge => true, :type => :boolean, :aliases => "-e"
+  class_options :heroku => false, :type => :boolean, :aliases => "-h"
+  class_options :mate => true, :type => :boolean, :aliases => "-m"
+  class_options :bundler => true, :type => :boolean, :aliases => "-b"
   
   def create_config_ru
     create_file "#{name}/config.ru", <<-DOC
-#\-s thin -p 5432
-begin
-  # Try to require the preresolved locked set of gems.
-  require File.expand_path('../.bundle/environment', __FILE__)
-rescue LoadError
-  # Fall back on doing an unlocked resolve at runtime.
-  require "rubygems"
-  Gem.clear_paths
-  require "bundler"
-  Bundler.setup
-end
+require "rubygems"
+require "bundler"
+Bundler.setup
+Bundler.require
 
-require 'orange-sparkles'
-
-run Orange::SparklesApp.app
+run (Orange::SparklesApp.app{
+  main_users ["david@orangesparkleball.com", "eric@orangesparkleball.com"]
+  s3_bucket "osb#{name.gsub(/[^0-9a-zA-Z-]/, '-')}"
+})
 DOC
   end
   
@@ -30,47 +28,35 @@ DOC
 #
 # See http://gembundler.com/ for more details
 source "http://rubygems.org"
-gem "orange"
-gem "orange-sparkles"
+gem "i18n"
+gem "aws-s3"
+gem "orange-core"#{options[:edge] ? ', :git => "git://github.com/therabidbanana/orange-core.git"' : ''}
+gem "orange-more"#{options[:edge] ? ', :git => "git://github.com/therabidbanana/orange-more.git"' : ''}
+gem "orange-sparkles"#{options[:edge] ? ', :git => "git://github.com/orange-project/orange-sparkles.git"' : ''}
+gem "dm-postgres-adapter"
+gem "dm-sqlite-adapter"
 DOC
   end
   
   def create_config_yml
     create_file "#{name}/config.yml", <<-DOC
-database: mysql://osb:orange@localhost/orange_#{name}
-main_user: orange@orangesparkleball.com # Set to a valid google account email or OpenID
-db_no_auto_upgrade: false  # set to true to disable DataMapper.auto_upgrade! calls
 
-development_mode: yes   # set false or no to turn off debug bar
-
-google_analytics_key: "gawhatever"
+# google_analytics_key: "gawhatever"
 
 DOC
   end
   
   def assets_dir
-    empty_directory "#{name}/assets/_sparkles_/css"
-    empty_directory "#{name}/assets/_sparkles_/js"
-    empty_directory "#{name}/assets/_sparkles_/images"
-    empty_directory "#{name}/assets/uploaded"
-  end
-  
-  def public_dir
-    empty_directory "#{name}/public"
+    empty_directory "#{name}/assets/public/css"
+    empty_directory "#{name}/assets/public/js"
+    empty_directory "#{name}/assets/public/images"
   end
   
   def create_readme
     create_file "#{name}/README.markdown", <<-DOC
 
-Dreamhost Orange Install Process:
+Heroku Orange Install Process:
 =================================
-
-
-Getting Custom Rubygems Going
------------------------------
-Get a custom version of ruby gems installed:
-
-[http://www.blog.bridgeutopiaweb.com/post/installing-ruby-gems-on-dreamhost/](http://www.blog.bridgeutopiaweb.com/post/installing-ruby-gems-on-dreamhost/)
 
 Install bundler:
 
@@ -80,26 +66,46 @@ Use Gemfile to get bundled gems
 
     bundle install
 
-Repeat `bundle install` until it actually works (Dreamhost kills bundle install sometimes)
 
-
-Configuration
--------------
-Set appropriate vars for running on Dreamhost
-
-In config.ru, set localized gems path (at top) or bundler won't work:
-
-    ENV['GEM_PATH'] = '__LOCAL/GEM/PATH/HERE__:/usr/lib/ruby/gems1.8/'
-
-In config.yml, set the appropriate database connection string:
-
-    database: mysql://USER:PASS@HOST/DB_NAME
 
 
 DOC
   end
   
+  
   def create_templates_dir
     empty_directory "#{name}/templates"
+  end
+  
+  def git_init
+    puts "running git init"
+    `cd #{name}; git init`
+  end
+  
+  
+  def run_bundler
+    if options[:bundler]
+      puts "running bundle install..."
+      `gem install bundler`
+      `cd #{name}; bundle install`
+    end
+  end
+  
+  def heroku_create
+    if options[:heroku]
+      hername = "osb" + name.gsub(/[^0-9a-zA-Z-]/, '-')
+      puts "creating #{hername} on heroku..."
+      `gem install heroku`
+      `cd #{name}; heroku create #{hername}`
+    end
+  end
+  
+  
+  def mate_it
+    if options[:mate]
+      hername = name.gsub(/[^0-9a-zA-Z-]/, '-')
+      puts "opening project in textmate..."
+      `mate #{name}`
+    end
   end
 end
