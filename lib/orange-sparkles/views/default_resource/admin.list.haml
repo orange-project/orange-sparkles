@@ -1,0 +1,31 @@
+- packet.add_js("page-list-effects.js", :module => "_sparkles_")
+- is_short ||= false
+.list-view
+  %table.tablesorter{:class => (is_short ? "is_short" : "")}
+    %thead
+      %tr.list-header-group
+        %th.list-header.page-listing-expand-collapse &nbsp;
+        - for prop in props
+          %th.list-header= prop[:name].to_s.gsub('_', ' ').capitalize
+        %td.list-header Actions
+    %tfoot
+      %tr
+        %td &nbsp;
+        - for prop in props
+          %td &nbsp;
+        %td
+          %a.button.add-button{:href => route_to(model_name, 'create')} New
+    %tbody
+      - for obj in list
+        %tr.page-listing-item= view_table_row(model_name, :model => obj)
+  .pager
+    %form
+      %img.first{:src=>"/assets/_sparkles_/images/tablesorter/first.png"}
+      %img.prev{:src=>"/assets/_sparkles_/images/tablesorter/prev.png"}
+      %input.pagedisplay{:type => "text"}
+      %img.next{:src=>"/assets/_sparkles_/images/tablesorter/next.png"}
+      %img.last{:src=>"/assets/_sparkles_/images/tablesorter/last.png"}
+      %select.pagesize
+        %option{:value => "5", :selected => is_short ? true : false} 5
+        %option{:value => "10", :selected => is_short ? false : true} 10
+        %option{:value => "25"} 25
