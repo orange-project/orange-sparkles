@@ -1,9 +1,34 @@
 require 'extlib/mash'
+
+class Orange::Carton
+  # Define a helper for input type="text" type database stuff
+  # Show in a context if wrapped in one of the helpers
+  def self.markdown(name, opts = {})
+    add_scaffold(name, :markdown, DataMapper::Property::Text, opts.with_defaults(:lazy => true))
+  end
+end
+
 class SparklesAppResource < Orange::Resource
   call_me :sparkles
   
   def init
     @tabs = []
+  end
+  def stack_init
+    orange[:scaffold].add_scaffold_type(:markdown) do |name, val, opts|
+      packet = opts[:packet]
+      opts = opts.with_defaults({:value => '', :label => false, :show => false, :wrap_tag => 'div'})
+      if opts[:show]
+        packet.markdown(val || '')
+      else
+        val = '' if val.blank?
+        val.gsub!("\n", '&#010;')
+        ret = "<textarea name='#{opts[:model_name]}[#{name}]' class='markdown-editor'>#{val}</textarea>"
+        ret = "<label for=''>#{opts[:display_name]}</label><br />" + ret if opts[:label]
+        ret = "<#{opts[:wrap_tag]}>#{ret}</#{opts[:wrap_tag]}>" if opts[:wrap_tag]
+        ret
+      end
+    end
   end
   
   def stylesheets
