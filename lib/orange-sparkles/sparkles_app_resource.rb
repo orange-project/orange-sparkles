@@ -17,6 +17,9 @@ class Orange::Carton
     end
     HEREDOC
   end
+  def self.as_sparkle_resource
+    as_sparkles_resource
+  end
 end
 
 class SparklesAppResource < Orange::Resource
