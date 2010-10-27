@@ -9,6 +9,8 @@
     = part[:js]
     %link{:rel => "stylesheet", :type => "text/css", :href => "/assets/_sparkles_/js/markitup/skins/simple/style.css"}
     %link{:rel => "stylesheet", :type => "text/css", :href => "/assets/_sparkles_/js/markitup/sets/markdown/style.css"}
+    :javascript
+      $(function(){$('.markdown-editor').markItUp(mySettings);})
   %body{:id => packet["route.resource"].to_s}
     %div#header
       %div#user-status 
@@ -25,10 +27,10 @@
       %div.tab-container
         / %a.tab#home-tab{:href => "#"} Home
         %a.tab#sitemap-tab{:href => route_to(:sitemap)} Pages
-        %a.tab#assets-tab{:href => route_to(:assets)} Assets
         - for link in (orange[:sparkles].tabs || [])
           %style= "body##{link[:resource]} a##{link[:resource]}-tab{ background: #999999;}"
           %a.tab{:id => "#{link[:resource]}-tab", :href => route_to(link[:resource])}= link[:text]
+        %a.tab#assets-tab{:href => route_to(:assets)} Assets
     %div#subheader
       %h1
         %img.subhead-icon{:src => "/assets/_sparkles_/images/edit.png", :width => "23", :height => "22", :alt => "Pages icon"}
