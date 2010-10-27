@@ -14,6 +14,7 @@ class Orange::Carton
     eval <<-HEREDOC
     class ::#{name}Resource < Orange::SparklesResource
       use #{name}
+      call_me :#{name.downcase}
     end
     HEREDOC
   end
