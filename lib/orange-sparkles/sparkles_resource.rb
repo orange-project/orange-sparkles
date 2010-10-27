@@ -1,23 +1,11 @@
-require 'extlib/mash'
-class SparklesResource < Orange::Resource
-  call_me :sparkles
-  def stylesheets
-    orange.options["sparkles.stylesheets"] || []
+class Orange::SparklesResource < Orange::ModelResource
+  extend ClassInheritableAttributes
+  cattr_accessor :tabbed
+  def self.tab(text = nil)
+    self.tabbed = text
   end
-  def javascripts
-    orange.options["sparkles.javascripts"] || []
-  end
-  def site_name(packet, default = "An Orange Site")
-    packet['site'] ? packet['site'].name : default
-  end
-  def sidebar?
-    orange.options["sidebar_on"] || false
-  end
-  def tabs
-    tabs = orange.options["sparkles.tabs"] || []
-    tabs.collect{|hash| Mash.new(hash)} || []
-  end
-  def default_style?
-    orange.options["sparkles.default_style"] || stylesheets.empty?
+  
+  def stack_init
+    orange[:sparkles].add_tab(@my_orange_name, self.class.tabbed) if self.class.tabbed || (self.class.tabbed == nil)
   end
 end
