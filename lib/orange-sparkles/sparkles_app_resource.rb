@@ -19,7 +19,7 @@ class SparklesAppResource < Orange::Resource
     orange.options["sidebar_on"] || false
   end
   def add_tab(resource, text = nil)
-    @tabs << {:resource => resource, :text => (text || resource.to_s)}
+    @tabs << {:resource => resource, :text => (text || resource.to_s.capitalize)}
   end
   def tabs
     tabs = orange.options["sparkles.tabs"] || []
