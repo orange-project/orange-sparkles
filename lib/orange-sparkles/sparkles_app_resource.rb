@@ -6,6 +6,17 @@ class Orange::Carton
   def self.markdown(name, opts = {})
     add_scaffold(name, :markdown, DataMapper::Property::Text, opts.with_defaults(:lazy => true))
   end
+  
+  # Declares a SparklesResource subclass that scaffolds this carton
+  # The Subclass will have the name of the carton followed by "Resource"
+  def self.as_sparkles_resource
+    name = self.to_s
+    eval <<-HEREDOC
+    class ::#{name}Resource < Orange::SparklesResource
+      use #{name}
+    end
+    HEREDOC
+  end
 end
 
 class SparklesAppResource < Orange::Resource
