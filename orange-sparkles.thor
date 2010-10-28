@@ -65,8 +65,13 @@ Use Gemfile to get bundled gems
 
     bundle install
 
+Run heroku create (assuming you have a heroku account and heroku gem set up)
 
+    heroku create
 
+Push to heroku
+
+    git push heroku master
 
 DOC
   end
