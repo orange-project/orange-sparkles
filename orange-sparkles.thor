@@ -13,10 +13,10 @@ require "rubygems"
 require "bundler"
 Bundler.setup
 Bundler.require
+Orange.autoload!
 
 run (Orange::SparklesApp.app{
-  main_users ["david@orangesparkleball.com", "eric@orangesparkleball.com"]
-  s3_bucket "osb#{name.gsub(/[^0-9a-zA-Z-]/, '-')}"
+  main_users ["example-google-email-address@gmail.com"]
 })
 DOC
   end
@@ -82,6 +82,13 @@ DOC
     `cd #{name}; git init`
   end
   
+  def mate_it
+    if options[:mate]
+      hername = name.gsub(/[^0-9a-zA-Z-]/, '-')
+      puts "opening project in textmate..."
+      `mate #{name}`
+    end
+  end
   
   def run_bundler
     if options[:bundler]
@@ -101,11 +108,4 @@ DOC
   end
   
   
-  def mate_it
-    if options[:mate]
-      hername = name.gsub(/[^0-9a-zA-Z-]/, '-')
-      puts "opening project in textmate..."
-      `mate #{name}`
-    end
-  end
 end
