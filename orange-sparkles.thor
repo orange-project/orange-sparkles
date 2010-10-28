@@ -2,7 +2,7 @@ class OrangeSparkles < Thor::Group
   include Thor::Actions
   
   argument :name
-  class_options :edge => true, :type => :boolean, :aliases => "-e"
+  class_options :edge => false, :type => :boolean, :aliases => "-e"
   class_options :heroku => false, :type => :boolean, :aliases => "-h"
   class_options :mate => true, :type => :boolean, :aliases => "-m"
   class_options :bundler => true, :type => :boolean, :aliases => "-b"
@@ -28,8 +28,6 @@ DOC
 #
 # See http://gembundler.com/ for more details
 source "http://rubygems.org"
-gem "i18n"
-gem "aws-s3"
 gem "orange-core"#{options[:edge] ? ', :git => "git://github.com/therabidbanana/orange-core.git"' : ''}
 gem "orange-more"#{options[:edge] ? ', :git => "git://github.com/therabidbanana/orange-more.git"' : ''}
 gem "orange-sparkles"#{options[:edge] ? ', :git => "git://github.com/orange-project/orange-sparkles.git"' : ''}
@@ -37,20 +35,21 @@ gem "dm-postgres-adapter"
 gem "dm-sqlite-adapter"
 DOC
   end
-  
-  def create_config_yml
-    create_file "#{name}/config.yml", <<-DOC
-
-# google_analytics_key: "gawhatever"
-
-DOC
-  end
-  
-  def assets_dir
-    empty_directory "#{name}/assets/public/css"
-    empty_directory "#{name}/assets/public/js"
-    empty_directory "#{name}/assets/public/images"
-  end
+  # 
+  #   def create_config_yml
+  #     create_file "#{name}/config.yml", <<-DOC
+  # 
+  # # google_analytics_key: "gawhatever"
+  # # s3_bucket: "orange-test"
+  # 
+  # DOC
+  #   end
+    # 
+    # def assets_dir
+    #   empty_directory "#{name}/assets/public/css"
+    #   empty_directory "#{name}/assets/public/js"
+    #   empty_directory "#{name}/assets/public/images"
+    # end
   
   def create_readme
     create_file "#{name}/README.markdown", <<-DOC
@@ -72,10 +71,10 @@ Use Gemfile to get bundled gems
 DOC
   end
   
-  
-  def create_templates_dir
-    empty_directory "#{name}/templates"
-  end
+    # 
+    # def create_templates_dir
+    #   empty_directory "#{name}/templates"
+    # end
   
   def git_init
     puts "running git init"
@@ -100,7 +99,7 @@ DOC
   
   def heroku_create
     if options[:heroku]
-      hername = "osb" + name.gsub(/[^0-9a-zA-Z-]/, '-')
+      hername = "orange" + name.gsub(/[^0-9a-zA-Z-]/, '-')
       puts "creating #{hername} on heroku..."
       `gem install heroku`
       `cd #{name}; heroku create #{hername}`
