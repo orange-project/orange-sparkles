@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{orange-sparkles}
-  s.version = "0.7.0"
+  s.version = "0.7.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["David Haslem"]
-  s.date = %q{2010-10-05}
+  s.date = %q{2010-10-27}
   s.description = %q{This gem is a CMS theme for orange}
   s.email = %q{therabidbanana@gmail.com}
   s.extra_rdoc_files = [
@@ -203,6 +203,7 @@ Gem::Specification.new do |s|
      "lib/orange-sparkles/assets/js/popout-effects-page-edit.js",
      "lib/orange-sparkles/plugin.rb",
      "lib/orange-sparkles/sparkles_app.rb",
+     "lib/orange-sparkles/sparkles_app_resource.rb",
      "lib/orange-sparkles/sparkles_resource.rb",
      "lib/orange-sparkles/templates/home.haml",
      "lib/orange-sparkles/templates/sparkles-admin.haml",
@@ -225,11 +226,14 @@ Gem::Specification.new do |s|
      "lib/orange-sparkles/views/blog_posts/table_row.haml",
      "lib/orange-sparkles/views/contactforms/contactform.haml",
      "lib/orange-sparkles/views/contactforms/list.haml",
+     "lib/orange-sparkles/views/default_resource/admin.list.haml",
      "lib/orange-sparkles/views/default_resource/create.haml",
      "lib/orange-sparkles/views/default_resource/edit.haml",
      "lib/orange-sparkles/views/default_resource/list.haml",
+     "lib/orange-sparkles/views/default_resource/orange.list.haml",
      "lib/orange-sparkles/views/default_resource/show.haml",
      "lib/orange-sparkles/views/default_resource/sitemap_row.haml",
+     "lib/orange-sparkles/views/default_resource/summary.haml",
      "lib/orange-sparkles/views/default_resource/table_row.haml",
      "lib/orange-sparkles/views/disqus/comment_thread.haml",
      "lib/orange-sparkles/views/news/archive.haml",
@@ -270,6 +274,9 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.6}
   s.summary = %q{Adding some prettiness to orange-core}
+  s.test_files = [
+    "examples/simple/cartons/bar.rb"
+  ]
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
