@@ -1,3 +1,1 @@
-sparkles.tabs:
-  - {resource: bar, text: Foobarbaz}
 sparkles.default_style: true
