@@ -4,6 +4,27 @@
   %title Sparkles : Login
   %link{:rel => "stylesheet", :href => "/assets/_sparkles_/css/sparkles-admin.css", :media => "Screen"}
   %script{:src => "/assets/_sparkles_/js/jquery-1.4.1.min.js", :type => "text/javascript"}
+  :javascript
+    function openOpenIDWindow(openid){
+      $('#login-box .providers').hide();
+      $('#login-box .logging_in').show();
+      
+      if(openid) window.open('/auth/open_id?openid_url='+encodeURIComponent(openid), 'openid_popup', 'width=500,height=450');
+      else window.open('/auth/open_id', 'openid_popup', 'width=500,height=450');
+    }
+    function openOAuthWindow(url){
+      window.open(url, 'openid_popup','width=900,height=600');
+    }
+    function handleAuthResponse(redirect_to, valid){
+      if(valid){
+        window.location = redirect_to;
+      }
+      else{
+        $('#login-box .providers').show();
+        $('#login-box .providers .login_error').show();
+        $('#login-box .logging_in').hide();
+      }
+    }
 %body
   %div#header
   %div#subheader
@@ -13,19 +34,34 @@
     %h1 Welcome to Sparkles*.
     %h2 You'll need to log in before you can continue.
     %div#login-box
-      %form#login{:name => "login", :method => "post", :action => ""}
-        - unless packet.flash['login.message'].blank?
+      - unless packet.flash['login.message'].blank?
+        .message
+          %p= packet.flash('login.message')
+      .providers
+        .login_error{:style => "display: none"}
           .message
-            %p= packet.flash('login.message')
+            %p Looks like you don't have access with the login info you've used. Try another provider?
         %label.center-block
-          Login with Google
-        %a.center-block{:href => "#", :onclick => "$(\"#login-openid\").val(\"https://www.google.com/accounts/o8/id\"); $(\"form#login\").submit(); return false;"}
-          %img{:src => "/assets/_sparkles_/images/google-small.png", :border => "0"}
-        %span.center-block 
-          or
-        %label.center-block{:for => "openid_identifier"} Use OpenID
-        %input#login-openid{:type => "text", :name => "openid_identifier"}
-        %button#login-submit{:type => "image", :name => "login-submit"} Submit
+          Choose a Login Provider
+        %a{:href => "#", :onclick => "openOpenIDWindow(\"https://www.google.com/accounts/o8/id\"); return false;"}
+          %img{:src => "/assets/_administration_/images/google_badge.png", :border => "0"}
+        %a{:href => "#", :onclick => "openOpenIDWindow(\"https://www.yahoo.com\"); return false;"}
+          %img{:src => "/assets/_administration_/images/yahoo_badge.png", :border => "0"}
+        %a{:href => "#", :onclick => "openOpenIDWindow(false); return false;"}
+          %img{:src => "/assets/_administration_/images/openid_badge.png", :border => "0"}
+        - unless(orange.options['omniauth_twitter'].blank?)
+          %a{:href => "#", :onclick => "openOAuthWindow('/auth/twitter'); return false;"}
+            %img{:src => "/assets/_administration_/images/twitter_badge.png", :border => "0"}
+        - unless(orange.options['omniauth_github'].blank?)
+          %a{:href => "#", :onclick => "openOAuthWindow('/auth/github'); return false;"}
+            %img{:src => "/assets/_administration_/images/github_badge.png", :border => "0"}
+        - unless(orange.options['omniauth_facebook'].blank?)
+          %a{:href => "#", :onclick => "openOAuthWindow('/auth/facebook'); return false;"}
+            %img{:src => "/assets/_administration_/images/facebook_badge.png", :border => "0"}
+      .logging_in{:style => "display: none"}
+        %label.center-block
+          Attempting to sign in... 
+        %img{:src => "/assets/_administration_/images/ajax_loader.gif"}
   %div#footer 
     powered by
     %span.orange-text Sparkles*

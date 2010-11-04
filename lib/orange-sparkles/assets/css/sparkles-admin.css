@@ -189,7 +189,8 @@ div#current-site-header {
 	-webkit-border-radius: 4px;
 	margin: 140px auto;
 	padding:15px;
-	width: 176px;
+	width: 220px;
+	text-align: center;
 }
 #login .message{
 	background: #efa;

@@ -66,7 +66,15 @@ class SparklesAppResource < Orange::Resource
     tabs = (tabs + @tabs) unless @tabs.blank?
     tabs.collect{|hash| Mash.new(hash)} || []
   end
+  def theme?
+    Orange.plugins.collect{|p| p.respond_to?(:theme) ? p.theme : nil }.compact.first || false
+  end
+  
+  def theme
+    orange.options["sparkles.theme"] ||= (theme? || "_sparkles_")
+  end
+  
   def default_style?
-    orange.options["sparkles.default_style"] || stylesheets.empty?
+    theme? || orange.options["sparkles.default_style"] || stylesheets.empty?
   end
 end

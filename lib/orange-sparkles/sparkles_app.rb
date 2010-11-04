@@ -10,8 +10,9 @@ require 'orange-more/cloud'
 require 'orange-more/debugger'
 require 'rack/builder'
 require 'rack/abstract_format'
-require 'rack/openid'
+require 'rack-datamapper-session'
 require 'openid_dm_store'
+require 'omniauth'
 require 'kramdown'
 require 'orange-sparkles/plugin'
 
@@ -34,11 +35,11 @@ class Orange::SparklesApp < Orange::Application
         'sparkles-admin.haml'
       elsif(packet['route.path'] == '/')
         ['reset', 'text'].each{|c| packet.add_css("#{c}.css", :module => '_sparkles_')}
-        ['main'].each{|c| packet.add_css("#{c}.css", :module => '_sparkles_')} if orange[:sparkles].default_style?
+        ['main'].each{|c| packet.add_css("#{c}.css", :module => orange[:sparkles].theme)} if orange[:sparkles].default_style?
         'home.haml'
       else
         ['reset', 'text'].each{|c| packet.add_css("#{c}.css", :module => '_sparkles_')}
-        ['main'].each{|c| packet.add_css("#{c}.css", :module => '_sparkles_')} if orange[:sparkles].default_style?
+        ['main'].each{|c| packet.add_css("#{c}.css", :module => orange[:sparkles].theme)} if orange[:sparkles].default_style?
         'subpage.haml'
       end
     end # end do
@@ -47,13 +48,21 @@ class Orange::SparklesApp < Orange::Application
   stack do
     use Rack::CommonLogger
     use Rack::MethodOverride
-    use Rack::Session::Cookie, :secret => (orange.options['main_user'] || 'the_secret')
+    use Rack::Session::DataMapper
     use_exceptions
-    
-    use Rack::OpenID, OpenIDDataMapper::DataMapperStore.new
+    # Note that the included OAuth keys are valid for localhost tests only
+    if orange.options['omniauth_twitter']
+      use OmniAuth::Strategies::Twitter, (orange.options['omniauth_twitter']['consumer_key'] || 'mkaMYCidCDSf50qm1I78QQ'), (orange.options['omniauth_twitter']['consumer_secret'] || 'ahNYXlsvpSqoSBAjwcmxdIHiFaQQ7s3gV0DyyzmU7P0')
+    end
+    if orange.options['omniauth_github']
+      use OmniAuth::Strategies::GitHub, (orange.options['omniauth_github']['consumer_key'] || '6c548ddee59949e158dd'), (orange.options['omniauth_github']['consumer_secret'] || 'd0c3adc8a0e079eae711975f43b5bed1dc421f74')
+    end
+    if orange.options['omniauth_facebook']
+      use OmniAuth::Strategies::Facebook, (orange.options['omniauth_facebook']['consumer_key'] || '143536245693466'), (orange.options['omniauth_facebook']['consumer_secret'] || 'f3bce5ebad886ecc16f937b2945b3a3d')
+    end
     prerouting
 
-    routing :single_user => false, :exposed_actions => {:live => {:all => :show, :contactforms => [:mailer], :members => [:login, :logout, :profile, :register], :donations => [:process, :donate_success, :donate_cancel]}, :preview => :show, :admin => :all, :orange => :all}
+    routing :exposed_actions => {:live => :show, :preview => :show, :admin => :all, :orange => :all}
     
     postrouting
     orange.add_pulp(SparkleHelpers)
