@@ -50,16 +50,7 @@ class Orange::SparklesApp < Orange::Application
     use Rack::MethodOverride
     use Rack::Session::DataMapper
     use_exceptions
-    # Note that the included OAuth keys are valid for localhost tests only
-    if orange.options['omniauth_twitter']
-      use OmniAuth::Strategies::Twitter, (orange.options['omniauth_twitter']['consumer_key'] || 'mkaMYCidCDSf50qm1I78QQ'), (orange.options['omniauth_twitter']['consumer_secret'] || 'ahNYXlsvpSqoSBAjwcmxdIHiFaQQ7s3gV0DyyzmU7P0')
-    end
-    if orange.options['omniauth_github']
-      use OmniAuth::Strategies::GitHub, (orange.options['omniauth_github']['consumer_key'] || '6c548ddee59949e158dd'), (orange.options['omniauth_github']['consumer_secret'] || 'd0c3adc8a0e079eae711975f43b5bed1dc421f74')
-    end
-    if orange.options['omniauth_facebook']
-      use OmniAuth::Strategies::Facebook, (orange.options['omniauth_facebook']['consumer_key'] || '143536245693466'), (orange.options['omniauth_facebook']['consumer_secret'] || 'f3bce5ebad886ecc16f937b2945b3a3d')
-    end
+    
     prerouting
 
     routing :exposed_actions => {:live => :show, :preview => :show, :admin => :all, :orange => :all}
